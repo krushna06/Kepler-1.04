@@ -38,8 +38,8 @@ if (process.env.TOPGG_TOKEN) {
 console.clear();
 console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.grey(`Starting up`)), (chalk.grey(`...`)))
 console.log(`\u001b[0m`)
-console.log(chalk.yellow(`© Kepler | 2022 - ${new Date().getFullYear()}`))
-console.log(chalk.yellow(`All rights reserved`))
+console.log(chalk.hex('#85ff9d')(`© Kepler | 2022 - ${new Date().getFullYear()}`))
+console.log(chalk.hex('#85ff9d')(`All rights reserved`))
 console.log(`\u001b[0m`)
 console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.yellow(`Version ${require(`${process.cwd()}/package.json`).version}`), (chalk.cyan(`loaded`)))
 console.log(`\u001b[0m`);
