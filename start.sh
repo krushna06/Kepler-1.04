@@ -1,0 +1,3 @@
+echo Starting discord bot...
+npm i
+node . 
