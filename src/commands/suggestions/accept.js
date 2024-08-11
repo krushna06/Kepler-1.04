@@ -19,9 +19,9 @@ module.exports = async (client, interaction, args) => {
         const embedData = suggestEmbed.embeds[0];
 
         client.embed({
-            title: `${client.emotes.normal.check}・Suggestion accepted`,
+            title: `${client.emotes.normal.check}・Suggestion acceptée`,
             desc: `\`\`\`${embedData.description}\`\`\``,
-            color: client.config.colors.succes,
+            color: client.config.colors.success,
             author: {
                 name: embedData.author.name,
                 iconURL: embedData.author.iconURL
@@ -34,8 +34,8 @@ module.exports = async (client, interaction, args) => {
 
             if (user) {
                 client.embed({
-                    title: `${client.emotes.normal.check}・Suggestion accepted`,
-                    desc: `Your suggestion in ${interaction.guild.name} has been accepted by a moderator!`,
+                    title: `${client.emotes.normal.check}・Suggestion acceptée`,
+                    desc: `Votre suggestion dans ${interaction.guild.name} a été acceptée par un modérateur !`,
                     fields: [
                         {
                             name: `💬┆Suggestion`,
@@ -48,7 +48,7 @@ module.exports = async (client, interaction, args) => {
         catch { }
 
         client.succNormal({
-            text: "Suggestion successfully accepted",
+            text: "Suggestion acceptée avec succès",
             fields: [
                 {
                     name: `💬┆Suggestion`,
@@ -60,10 +60,8 @@ module.exports = async (client, interaction, args) => {
     }
     else {
         client.errNormal({
-            error: `No suggestion channel set! Please do the setup`,
+            error: `Aucun canal de suggestions défini ! Veuillez effectuer la configuration`,
             type: 'editreply'
         }, interaction);
     }
 }
-
- 
