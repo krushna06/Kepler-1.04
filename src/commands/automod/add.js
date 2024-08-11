@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
         if (data) {
             if (data.Words.includes(word)) {
                 return client.errNormal({ 
-                    error: `That word is already exists in the database!`,
+                    error: `Ce mot existe déjà dans la base de données!`,
                     type: 'editreply' 
                 }, interaction);
             }
@@ -26,15 +26,13 @@ module.exports = async (client, interaction, args) => {
     })
 
     client.succNormal({
-        text: `Word is now blacklisted!`,
+        text: `Le mot est maintenant sur la liste noire!`,
         fields: [
             {
-                name: `💬┆Word`,
+                name: `💬┆Mot`,
                 value: `${word}`
             }
         ],
         type: 'editreply'
     }, interaction);
 }
-
- 

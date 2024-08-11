@@ -18,9 +18,7 @@ module.exports = async (client, interaction, args) => {
     }
 
     client.succNormal({
-        text: `Anti links is now **${boolean ? 'enabled' : 'disabled'}** in this guild`,
+        text: `Anti-liens est maintenant **${boolean ? 'activé' : 'désactivé'}** dans ce serveur`,
         type: 'editreply'
     }, interaction);
 }
-
- 
