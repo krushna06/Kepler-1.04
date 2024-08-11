@@ -10,12 +10,12 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "counting") {
         interaction.guild.channels.create({
-            name: "counting",
+            name: "compter",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.embed({
-                title: `🔢・Counting`,
-                desc: `This is the start of counting! The first number is **1**`
+                title: `🔢・Compter`,
+                desc: `C'est le début du comptage! Le premier nombre est **1**`
             }, ch)
 
             client.createChannelSetup(Counting, ch, interaction)
@@ -24,12 +24,12 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "gtn") {
         interaction.guild.channels.create({
-            name:"guess-the-number",
+            name:"devinez-le-numéro",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.embed({
-                title: `🔢・Guess the number`,
-                desc: `Guess the number between **1** and **10.000**!`
+                title: `🔢・Devinez le numéro`,
+                desc: `Devinez le numéro entre **1** et **10 000**!`
             }, ch)
 
             client.createChannelSetup(GTN, ch, interaction)
@@ -38,18 +38,18 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "gtw") {
         interaction.guild.channels.create({
-            name: "guess-the-word",
+            name: "devinez-le-mot",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
-            var word = "start";
+            var word = "démarrer";
             var shuffled = word.split('').sort(function () { return 0.5 - Math.random() }).join('');
 
             client.embed({
-                title: `💬・Guess the word`,
-                desc: `Put the letters in the right position!`,
+                title: `💬・Devinez le mot`,
+                desc: `Mettez les lettres dans le bon ordre!`,
                 fields: [
                     {
-                        name: `🔀┆Word`,
+                        name: `🔀┆Mot`,
                         value: `${shuffled.toLowerCase()}`
                     }
                 ],
@@ -61,11 +61,10 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "wordsnake") {
         interaction.guild.channels.create({
-            name: "word-snake",
+            name: "serpent-de-mots",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.createChannelSetup(WordSnake, ch, interaction)
         })
     }
 }
-

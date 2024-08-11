@@ -4,12 +4,12 @@ const voiceSchema = require("../../database/models/voice");
 
 module.exports = async (client, interaction, args) => {
     interaction.guild.channels.create({
-        name: "Custom voice",
+        name: "Salon vocal personnalisé",
         type: Discord.ChannelType.GuildCategory,
     }).then((cat) => {
         interaction.guild.channels.create({
-            name: "➕ Create Voice",
-            type:  Discord.ChannelType.GuildVoice,
+            name: "➕ Créer un salon vocal",
+            type: Discord.ChannelType.GuildVoice,
             parent: cat.id,
             permissionOverwrites: [
                 {
@@ -21,25 +21,25 @@ module.exports = async (client, interaction, args) => {
             voiceSchema.findOne({ Guild: interaction.guild.id }, async (err, data) => {
                 if (data) {
                     data.Category = cat.id;
-                    data.Channel = ch.id
-                    data.ChannelName = "{emoji} {channel name}"
+                    data.Channel = ch.id;
+                    data.ChannelName = "{emoji} {nom du salon}";
                     data.save();
                 }
                 else {
                     new voiceSchema({
                         Guild: interaction.guild.id,
                         Channel: ch.id,
-                        ChannelName: "{emoji} {channel name}",
+                        ChannelName: "{emoji} {nom du salon}",
                         Category: cat.id
                     }).save();
                 }
             });
 
             client.succNormal({
-                text: `Custom voice has been set up successfully!`,
+                text: `Le salon vocal personnalisé a été configuré avec succès!`,
                 fields: [
                     {
-                        name: `📘┆Channel`,
+                        name: `📘┆Salon`,
                         value: `${ch} (${ch.name})`
                     }
                 ],
@@ -48,4 +48,3 @@ module.exports = async (client, interaction, args) => {
         })
     })
 }
-

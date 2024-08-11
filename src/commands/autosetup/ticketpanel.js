@@ -17,22 +17,20 @@ module.exports = async (client, interaction, args) => {
 
             client.embed({
                 title: "Tickets",
-                desc: "Click on 🎫 to open a ticket",
+                desc: "Cliquez sur 🎫 pour ouvrir un ticket",
                 components: [row]
             }, channel)
 
             client.succNormal({
-                text: `Ticket panel has been set up successfully!`,
+                text: `Le panneau de tickets a été configuré avec succès!`,
                 type: 'editreply'
             }, interaction);
         }
         else {
             client.errNormal({
-                error: `Run the ticket setup first!`,
+                error: `Exécutez d'abord la configuration des tickets!`,
                 type: 'editreply'
             }, interaction);
         }
     })
 }
-
- 

@@ -11,7 +11,7 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "birthdays") {
         interaction.guild.channels.create({
-            name: "birthdays",
+            name: "anniversaires",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.createChannelSetup(Birthdays, ch, interaction)
@@ -29,7 +29,7 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "reviews") {
         interaction.guild.channels.create({
-            name: "reviews",
+            name: "critiques",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.createChannelSetup(Review, ch, interaction)
@@ -47,11 +47,10 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "starboard") {
         interaction.guild.channels.create({
-            name: "starboard",
+            name: "tableau des étoiles",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.createChannelSetup(StarBoard, ch, interaction)
         })
     }
 }
-
