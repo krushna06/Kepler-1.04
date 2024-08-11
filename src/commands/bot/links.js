@@ -5,29 +5,29 @@ module.exports = async (client, interaction, args) => {
         .addComponents(
             new Discord.StringSelectMenuBuilder()
                 .setCustomId('Bot-linkspanel')
-                .setPlaceholder('❌┆Nothing selected')
+                .setPlaceholder('❌┆Rien de sélectionné')
                 .addOptions([
                     {
-                        label: `Support server`,
-                        description: `Join the suppport server`,
+                        label: `Serveur de support`,
+                        description: `Rejoignez le serveur de support`,
                         emoji: "❓",
                         value: "support-linkspanel",
                     },
                     {
-                        label: `Invite Bot`,
-                        description: `Invite Bot to your server`,
+                        label: `Inviter le bot`,
+                        description: `Invitez Bot sur votre serveur`,
                         emoji: "📨",
                         value: "invite-linkspanel",
                     },
                     {
-                        label: `Community Server`,
-                        description: `Join the community server!`,
+                        label: `Serveur communautaire`,
+                        description: `Rejoignez le serveur communautaire!`,
                         emoji: "🌍",
                         value: "community-linkspanel",
                     },
                     {
                         label: `Top.gg`,
-                        description: `Show the top.gg link`,
+                        description: `Afficher le lien top.gg`,
                         emoji: "📃",
                         value: "top.gg-linkspanel",
                     },
@@ -35,12 +35,10 @@ module.exports = async (client, interaction, args) => {
         );
 
     client.embed({
-        title: `🔗・Links`,
-        desc: `Get access to all Bot links! Choose the link you need in the menu below`,
-        image: "https://cdn.discordapp.com/attachments/843487478881976381/874694194474668052/Bot_banner_invite.jpg",
+        title: `🔗・Liens`,
+        desc: `Accédez à tous les liens de Bot! Choisissez le lien dont vous avez besoin dans le menu ci-dessous`,
+        image: "https://cdn.discordapp.com/attachments/843487478881976381/874694194474250270/standard_8.gif",
         components: [row],
         type: 'editreply'
     }, interaction)
 }
-
- 
