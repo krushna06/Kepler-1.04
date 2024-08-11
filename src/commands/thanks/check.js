@@ -8,15 +8,13 @@ module.exports = async (client, interaction, args) => {
     thanksSchema.findOne({ User: member.id }, async (err, data) => {
         if (data) {
 
-            return client.embed({ title: `🤝・Thanks`, desc: `**${member.tag}** has \`${data.Received}\` thanks`, type: 'editreply' }, interaction);
+            return client.embed({ title: `🤝・Remerciements`, desc: `**${member.tag}** a \`${data.Received}\` remerciements`, type: 'editreply' }, interaction);
 
         }
         else {
 
-            return client.embed({ title: `🤝・Thanks`, desc: `**${member.tag}** has \`0\` thanks`, type: 'editreply' }, interaction);
+            return client.embed({ title: `🤝・Remerciements`, desc: `**${member.tag}** a \`0\` remerciements`, type: 'editreply' }, interaction);
         }
     });
 
 }
-
- 
