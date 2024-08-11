@@ -9,21 +9,19 @@ module.exports = async (client, interaction, args) => {
         let list = ``;
 
         for (var i = 0; i < data.length; i++) {
-            list += `**${i + 1}** - Channel: ${data[i].Channel}`;
+            list += `**${i + 1}** - Canal : ${data[i].Channel}\n`;
         }
 
         await client.embed({ 
-            title: `💬・Sticky messages`, 
+            title: `💬・Messages épinglés`, 
             desc: list, 
             type: 'editreply' 
         }, interaction)
     }
     else {
         client.errNormal({ 
-            error: "No data found!",
+            error: "Aucune donnée trouvée !",
             type: 'editreply' 
         }, interaction)
     }
 }
-
- 

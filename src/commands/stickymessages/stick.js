@@ -28,7 +28,7 @@ module.exports = async (client, interaction, args) => {
         })
 
         client.succNormal({
-            text: "Sticky message created",
+            text: "Message épinglé créé",
             fields: [
                 {
                     name: `💬┆Message`,
@@ -39,5 +39,3 @@ module.exports = async (client, interaction, args) => {
         }, interaction)
     })
 }
-
- 
