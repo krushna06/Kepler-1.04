@@ -21,7 +21,7 @@ module.exports = async (client, interaction, args) => {
     }
 
     if (!isHexColor(color)) return client.errNormal({
-        error: "You did not specify an hex color! Example: ff0000",
+        error: "Vous n'avez pas spécifié une couleur hexadécimale ! Exemple : ff0000",
         type: 'editreply'
     }, interaction)
 
@@ -39,10 +39,10 @@ module.exports = async (client, interaction, args) => {
     })
 
     client.succNormal({
-        text: `The embed color has been adjusted successfully`,
+        text: `La couleur de l'embed a été ajustée avec succès`,
         fields: [
             {
-                name: `🎨┆New color`,
+                name: `🎨┆Nouvelle couleur`,
                 value: `#${color}`,
                 inline: true
             },
@@ -56,5 +56,3 @@ function isHexColor(hex) {
         && hex.length === 6
         && !isNaN(Number('0x' + hex))
 }
-
- 
