@@ -1,22 +1,20 @@
 const Discord = require('discord.js');
+const generator = require('generate-password');
 
 const Schema = require("../../database/models/notes");
 
 module.exports = async (client, interaction, args) => {
+
     let id = interaction.options.getString('id');
-    let note = interaction.options.getString('note');
 
     Schema.findOne({ Guild: interaction.guild.id, Code: id }, async (err, data) => {
         if (data) {
-            data.Note = note
-            data.save();
-
-            client.succNormal({ text: "Note has been edited!", type: 'editreply' }, interaction);
+            Schema.findOneAndDelete({ Guild: interaction.guild.id, Code: id }).then(() => {
+                client.succNormal({ text: `La note **#${id}** a été supprimée !`, type: 'editreply' }, interaction);
+            })
         }
         else {
-            client.errNormal({ error: `No note found!`, type: 'editreply' }, interaction);
+            client.errNormal({ error: `Aucune note trouvée avec l'ID **#${id}**`, type: 'editreply' }, interaction);
         }
     })
 }
-
- 
