@@ -13,7 +13,7 @@ module.exports = async (client, interaction, args) => {
 
     if (ticketData) {
         if (ticketData.resolved == true) return client.errNormal({
-            error: "Ticket is already closed!",
+            error: "Le ticket est déjà fermé !",
             type: 'ephemeraledit'
         }, interaction);
 
@@ -23,7 +23,7 @@ module.exports = async (client, interaction, args) => {
 
             if (ticketCategory == undefined) {
                 return client.errNormal({
-                    error: "Do the setup!",
+                    error: "Configurez le système !",
                     type: type
                 }, interaction);
             }
@@ -39,7 +39,7 @@ module.exports = async (client, interaction, args) => {
                     });
 
                     try {
-                        var closeMessageTicket = "Here is the transcript for your ticket, please keep this if you ever want to refer to it!";
+                        var closeMessageTicket = "Voici la transcription de votre ticket, veuillez la conserver si vous souhaitez vous y référer !";
                         let ticketMessageData = await ticketMessageConfig.findOne({ Guild: interaction.guild.id });
                         if (ticketMessageData) {
                             closeMessageTicket = ticketMessageData.dmMessage;
@@ -49,55 +49,55 @@ module.exports = async (client, interaction, args) => {
                             desc: closeMessageTicket,
                             fields: [
                                 {
-                                    name: "👤┆Closer",
+                                    name: "👤┆Fermé par",
                                     value: `${interaction.user}`,
                                     inline: true
                                 },
                                 {
-                                    name: "📄┆Ticket id",
+                                    name: "📄┆ID du ticket",
                                     value: `${ticketData.TicketID}`,
                                     inline: true
                                 },
                                 {
-                                    name: "💬┆Server",
+                                    name: "💬┆Serveur",
                                     value: `${interaction.guild.name}`,
                                     inline: true
                                 }
                             ]
-                        }, usr)
+                        }, usr);
                         client.transcript(interaction, usr).catch(() => { });
                     }
                     catch (err) { }
-                })
+                });
 
                 if (logsChannel) {
                     client.embed({
-                        title: `🔒・Ticket closed`,
-                        desc: `Ticket is closed`,
+                        title: `🔒・Ticket fermé`,
+                        desc: `Le ticket est fermé`,
                         color: client.config.colors.error,
                         fields: [
                             {
-                                name: "📘┆Ticket id",
+                                name: "📘┆ID du ticket",
                                 value: `${ticketData.TicketID}`,
                             },
                             {
-                                name: "👤┆Closer",
+                                name: "👤┆Fermé par",
                                 value: `${interaction.user.tag} (${interaction.user.id})`,
                             },
                             {
-                                name: "👤┆Creator",
+                                name: "👤┆Créateur",
                                 value: `<@!${ticketData.creator}>`,
                             },
                             {
-                                name: "✋┆Claimed by",
-                                value: `<@!${ticketData.creator}>`,
+                                name: "✋┆Réclamé par",
+                                value: `<@!${ticketData.claimed}>`,
                             },
                             {
                                 name: "⏰┆Date",
                                 value: `<t:${(Date.now() / 1000).toFixed(0)}:F>`,
                             }
                         ]
-                    }, logsChannel)
+                    }, logsChannel);
                     client.transcript(interaction, logsChannel);
                 }
 
@@ -106,9 +106,9 @@ module.exports = async (client, interaction, args) => {
 
                 interaction.channel.edit({ name: `ticket-closed` });
                 client.simpleEmbed({
-                    desc: `Ticket closed by <@!${interaction.user.id}>`,
+                    desc: `Ticket fermé par <@!${interaction.user.id}>`,
                     type: type
-                }, interaction)
+                }, interaction);
 
                 const row = new Discord.ActionRowBuilder()
                     .addComponents(
@@ -129,26 +129,24 @@ module.exports = async (client, interaction, args) => {
                     );
 
                 client.embed({
-                    title: "🔒・Closed",
-                    desc: `📝 - Save transcript \n🔓 - Reopen ticket \n⛔ - Delete ticket`,
+                    title: "🔒・Fermé",
+                    desc: `📝 - Sauvegarder la transcription \n🔓 - Réouvrir le ticket \n⛔ - Supprimer le ticket`,
                     components: [row],
-                }, interaction.channel)
+                }, interaction.channel);
             }
             else {
                 return client.errNormal({
-                    error: "Do the ticket setup!",
+                    error: "Configurez le système !",
                     type: type
                 }, interaction);
-
             }
         }
         else {
             return client.errNormal({
-                error: "Do the ticket setup!",
+                error: "Configurez le système !",
                 type: type
-            }, interaction)
+            }, interaction);
         }
     }
 }
 
- 

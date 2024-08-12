@@ -5,17 +5,17 @@ const ticketChannels = require("../../database/models/ticketChannels");
 
 module.exports = async (client, interaction, args) => {
     const data = await ticketSchema.findOne({ Guild: interaction.guild.id });
-    const ticketData = await ticketChannels.findOne({ Guild: interaction.guild.id, channelID: interaction.channel.id })
+    const ticketData = await ticketChannels.findOne({ Guild: interaction.guild.id, channelID: interaction.channel.id });
 
     let type = 'reply';
     if (interaction.isCommand()) type = 'editreply';
-    
+
     if (ticketData) {
         if (interaction.user.id !== ticketData.creator) {
             const perms = await client.checkUserPerms({
                 flags: [Discord.PermissionsBitField.Flags.ManageMessages],
                 perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-            }, interaction)
+            }, interaction);
 
             if (perms == false) return;
 
@@ -25,9 +25,9 @@ module.exports = async (client, interaction, args) => {
 
                     if (ticketCategory == undefined) {
                         return client.errNormal({
-                            error: "Do the ticket setup!",
+                            error: "Configurez le système de tickets !",
                             type: type
-                        }, interaction)
+                        }, interaction);
                     }
 
                     if (interaction.channel.parentId == ticketCategory.id) {
@@ -36,39 +36,38 @@ module.exports = async (client, interaction, args) => {
                         ticketData.save();
 
                         return client.simpleEmbed({
-                            desc: `You will now be assisted by <@!${interaction.user.id}>`,
+                            desc: `Vous serez désormais assisté par <@!${interaction.user.id}>`,
                             type: type
-                        }, interaction)
+                        }, interaction);
 
                     }
                     else {
                         client.errNormal({
-                            error: "This is not a ticket!",
+                            error: "Ce n'est pas un ticket !",
                             type: type
-                        }, interaction)
+                        }, interaction);
                     }
                 }
                 else {
                     client.errNormal({
-                        error: "Ticket has already been claimed!",
+                        error: "Le ticket a déjà été pris en charge !",
                         type: 'ephemeral'
-                    }, interaction)
+                    }, interaction);
                 }
             }
             else {
                 return client.errNormal({
-                    error: "Do the ticket setup!",
+                    error: "Configurez le système de tickets !",
                     type: type
-                }, interaction)
+                }, interaction);
             }
         }
         else {
             return client.errNormal({
-                error: "You are not allowed to claim your own ticket!",
+                error: "Vous ne pouvez pas réclamer votre propre ticket !",
                 type: 'ephemeral'
-            }, interaction)
+            }, interaction);
         }
     }
 }
 
- 

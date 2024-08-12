@@ -18,7 +18,7 @@ module.exports = async (client, interaction, args) => {
 
             if (ticketCategory == undefined) {
                 return client.errNormal({
-                    error: "Do the setup!",
+                    error: "Configurez le système !",
                     type: 'editreply'
                 }, interaction);
             }
@@ -35,13 +35,13 @@ module.exports = async (client, interaction, args) => {
                     });
 
                     return client.simpleEmbed({
-                        desc: `Ticket lowered by <@!${interaction.user.id}>`,
+                        desc: `Ticket abaissé par <@!${interaction.user.id}>`,
                         type: 'editreply'
                     }, interaction)
                 }
                 catch {
                     client.errNormal({
-                        error: "Something went wrong!",
+                        error: "Une erreur est survenue !",
                         type: 'editreply'
                     }, interaction);
                 }
@@ -49,7 +49,7 @@ module.exports = async (client, interaction, args) => {
             }
             else {
                 client.errNormal({ 
-                    error: "This is not a ticket!", 
+                    error: "Ce n'est pas un ticket !", 
                     type: 'editreply'
                 }, interaction);
 
@@ -57,11 +57,9 @@ module.exports = async (client, interaction, args) => {
         }
         else {
             return client.errNormal({ 
-                error: "Do the setup!", 
+                error: "Configurez le système !", 
                 type: 'editreply'
             }, interaction);
         }
     })
 }
-
- 

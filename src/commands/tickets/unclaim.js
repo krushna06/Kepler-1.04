@@ -19,7 +19,7 @@ module.exports = async (client, interaction, args) => {
             if (data) {
                 if (ticketData.claimed == "" || ticketData.claimed == undefined || ticketData.claimed == "None") {
                     client.errNormal({
-                        text: "Ticket not claimed!",
+                        text: "Ticket non réclamé !",
                         type: 'ephemeral'
                     }, interaction)
                 }
@@ -29,7 +29,7 @@ module.exports = async (client, interaction, args) => {
 
                         if (ticketCategory == undefined) {
                             return client.errNormal({
-                                error: "Do the setup!",
+                                error: "Configurez le système !",
                                 type: 'editreply'
                             }, interaction);
                         }
@@ -40,21 +40,21 @@ module.exports = async (client, interaction, args) => {
                             ticketData.save();
 
                             return client.simpleEmbed({
-                                desc: `This ticket can now be claimed again!`,
+                                desc: `Ce ticket peut maintenant être réclamé à nouveau !`,
                                 type: 'editreply'
                             }, interaction)
 
                         }
                         else {
                             client.errNormal({
-                                error: "This is not a ticket!",
+                                error: "Ce n'est pas un ticket !",
                                 type: 'editreply'
                             }, interaction)
                         }
                     }
                     else {
                         client.errNormal({
-                            error: "You have not claimed this ticket!",
+                            error: "Vous n'avez pas réclamé ce ticket !",
                             type: 'editreply'
                         }, interaction)
                     }
@@ -62,12 +62,10 @@ module.exports = async (client, interaction, args) => {
             }
             else {
                 return client.errNormal({
-                    error: "Do the ticket setup!",
+                    error: "Configurez le système de tickets !",
                     type: 'editreply'
                 }, interaction)
             }
         }
     }
 }
-
- 

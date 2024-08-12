@@ -20,14 +20,14 @@ module.exports = async (client, interaction, args) => {
 
             if (ticketCategory == undefined) {
                 return client.errNormal({
-                    error: "Do the ticket setup!",
+                    error: "Configurez le système de tickets !",
                     type: type
                 }, interaction)
             }
 
             if (interaction.channel.parentId == ticketCategory.id) {
                 client.simpleEmbed({
-                    desc: `Delete this ticket in **5s**`,
+                    desc: `Supprimez ce ticket dans **5s**`,
                     type: type
                 }, interaction).then(msg => setTimeout(() => {
                     interaction.channel.delete();
@@ -40,18 +40,16 @@ module.exports = async (client, interaction, args) => {
             }
             else {
                 client.errNormal({
-                    error: "This is not a ticket!",
+                    error: "Ce n'est pas un ticket !",
                     type: type
                 }, interaction);
             }
         }
         else {
             return client.errNormal({
-                error: "Do the ticket setup!",
+                error: "Configurez le système de tickets !",
                 type: type
             }, interaction)
         }
     })
 }
-
- 

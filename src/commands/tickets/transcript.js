@@ -22,20 +22,20 @@ module.exports = async (client, interaction, args) => {
 
                     if (ticketCategory == undefined) {
                         return client.errNormal({
-                            error: "Do the setup!",
+                            error: "Configurez le système !",
                             type: type
                         }, interaction);
                     }
 
                     if (interaction.channel.parentId == ticketCategory.id) {
                         return client.simpleEmbed({
-                            desc: `${client.emotes.animated.loading}・Transcript saving...`,
+                            desc: `${client.emotes.animated.loading}・Sauvegarde du transcript...`,
                             type: type
                         }, interaction).then(async (editMsg) => {
                             client.transcript(interaction, interaction.channel).then(() => {
 
                                 return client.simpleEmbed({
-                                    desc: `Transcript saved`,
+                                    desc: `Transcript sauvegardé`,
                                     type: 'editreply'
                                 }, interaction)
 
@@ -44,7 +44,7 @@ module.exports = async (client, interaction, args) => {
                     }
                     else {
                         client.errNormal({
-                            error: "This is not a ticket!",
+                            error: "Ce n'est pas un ticket !",
                             type: type
                         }, interaction);
 
@@ -52,7 +52,7 @@ module.exports = async (client, interaction, args) => {
                 }
                 else {
                     return client.errNormal({
-                        error: "Do the setup!",
+                        error: "Configurez le système !",
                         type: type
                     }, interaction);
                 }
@@ -60,5 +60,3 @@ module.exports = async (client, interaction, args) => {
         }
     })
 }
-
- 

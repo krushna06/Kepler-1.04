@@ -12,7 +12,7 @@ module.exports = async (client, interaction, args) => {
 
                     if (ticketCategory == undefined) {
                         return client.errNormal({
-                            error: "Do the setup!",
+                            error: "Configurez le système !",
                             type: 'editreply'
                         }, interaction);
                     }
@@ -20,7 +20,7 @@ module.exports = async (client, interaction, args) => {
                     if (interaction.channel.parentId == ticketCategory.id) {
 
                         client.embed({
-                            desc: `${client.emotes.animated.loading}・Loading information...`,
+                            desc: `${client.emotes.animated.loading}・Chargement des informations...`,
                             type: 'editreply'
                         }, interaction).then((msg) => {
 
@@ -30,27 +30,27 @@ module.exports = async (client, interaction, args) => {
                                 title: `ℹ・Information`,
                                 fields: [
                                     {
-                                        name: "Ticket name",
+                                        name: "Nom du ticket",
                                         value: `\`${interaction.channel.name}\``,
                                         inline: true,
                                     },
                                     {
-                                        name: "Channel id",
+                                        name: "ID du canal",
                                         value: `\`${interaction.channel.id}\``,
                                         inline: true,
                                     },
                                     {
-                                        name: "Creator",
+                                        name: "Créateur",
                                         value: `<@!${ticketData.creator}>`,
                                         inline: true,
                                     },
                                     {
-                                        name: "Claimed by",
+                                        name: "Réclamé par",
                                         value: `<@!${ticketData.claimed}>`,
                                         inline: true,
                                     },
                                     {
-                                        name: "Ticket id",
+                                        name: "ID du ticket",
                                         value: `${ticketData.TicketID}`,
                                         inline: true,
                                     },
@@ -62,14 +62,14 @@ module.exports = async (client, interaction, args) => {
                     }
                     else {
                         client.errNormal({ 
-                            error: "This is not a ticket!", 
+                            error: "Ce n'est pas un ticket !", 
                             type: 'editreply'
                         }, interaction);
                     }
                 }
                 else {
                     return client.errNormal({ 
-                        error: "Do the setup!", 
+                        error: "Configurez le système !", 
                         type: 'editreply'
                     }, interaction);
                 }
@@ -77,5 +77,3 @@ module.exports = async (client, interaction, args) => {
         }
     })
 }
-
- 
