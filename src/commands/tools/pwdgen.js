@@ -9,18 +9,18 @@ module.exports = async (client, interaction, args) => {
         numbers: true
     });
 
-    client.succNormal({ text: `I have generate a password and have it sent to your DM`, type: 'editreply' }, interaction);
+    client.succNormal({ text: `J'ai généré un mot de passe et l'ai envoyé en DM`, type: 'editreply' }, interaction);
 
     client.succNormal({
-        text: `Your generated password`,
+        text: `Votre mot de passe généré`,
         fields: [
             {
-                name: "🔑┇Password",
+                name: "🔑┇Mot de passe",
                 value: `${password}`,
                 inline: true,
             },
             {
-                name: "👣┇Length",
+                name: "👣┇Longueur",
                 value: `12`,
                 inline: true,
             }
@@ -29,4 +29,3 @@ module.exports = async (client, interaction, args) => {
 
 }
 
- 

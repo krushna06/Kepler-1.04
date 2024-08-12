@@ -8,18 +8,18 @@ module.exports = async (client, interaction, args) => {
     fetch(`http://www.anagramica.com/all/${encodeURIComponent(word)}`).then((res) => res.json()).catch({})
         .then(async (json) => {
             let content = ``;
-            if (!json.all[0]) return client.errNormal({ error: "No word found!", type: 'editreply' }, interaction)
+            if (!json.all[0]) return client.errNormal({ error: "Aucun mot trouvé !", type: 'editreply' }, interaction)
 
             json.all.forEach(i => {
                 content += `${i}\n`;
             });
 
             client.embed({
-                title: `❓・Anagram`,
-                desc: `I formed a word with the given letters`,
+                title: `❓・Anagramme`,
+                desc: `J'ai formé un mot avec les lettres données`,
                 fields: [
                     {
-                        name: `💬┇Word(s)`,
+                        name: `💬┇Mot(s)`,
                         value: content
                     }
                 ],
@@ -29,4 +29,3 @@ module.exports = async (client, interaction, args) => {
 
 }
 
- 

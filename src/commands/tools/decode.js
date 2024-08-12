@@ -5,7 +5,7 @@ module.exports = async (client, interaction, args) => {
     const code = interaction.options.getString('code');
 
     if (isNaN(parseInt(code))) return client.errNormal({
-        error: `You can only decode binary code!`,
+        error: `Vous ne pouvez décoder que du code binaire !`,
         type: 'editreply'
     }, interaction);
 
@@ -14,16 +14,16 @@ module.exports = async (client, interaction, args) => {
         .join('');
 
     client.embed({
-        title: `${client.emotes.normal.check}・Success!`,
-        desc: `I have decoded code`,
+        title: `${client.emotes.normal.check}・Succès !`,
+        desc: `J'ai décodé le code`,
         fields: [
             {
-                name: "📥 - Input",
+                name: "📥 - Entrée",
                 value: `\`\`\`${code}\`\`\``,
                 inline: false,
             },
             {
-                name: "📥 - Output",
+                name: "📥 - Sortie",
                 value: `\`\`\`${decode}\`\`\``,
                 inline: false,
             },
@@ -33,4 +33,3 @@ module.exports = async (client, interaction, args) => {
 
 }
 
- 

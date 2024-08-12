@@ -14,16 +14,16 @@ module.exports = async (client, interaction, args) => {
             },
         ],
         {
-            title: '💻・Random Code',
-            description: 'This is code was uploaded via Bot',
+            title: '💻・Code aléatoire',
+            description: 'Ce code a été téléchargé via le Bot',
         },
     ).then(value => {
         client.succNormal({
-            text: `Your code has been posted!`,
+            text: `Votre code a été publié !`,
             fields: [
                 {
-                    name: `🔗┇Link`,
-                    value: `[Click here to see your code](${value.url})`,
+                    name: `🔗┇Lien`,
+                    value: `[Cliquez ici pour voir votre code](${value.url})`,
                     inline: true,
                 }
             ],
@@ -33,4 +33,3 @@ module.exports = async (client, interaction, args) => {
 
 }
 
- 
