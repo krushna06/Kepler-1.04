@@ -6,7 +6,7 @@ module.exports = async (client, interaction, args) => {
     const rawLeaderboard = await Schema.find({ Guild: interaction.guild.id }).sort(([['Messages', 'descending']]));
 
     if (!rawLeaderboard) return client.errNormal({
-        error: `No data found!`,
+        error: `Aucune donnée trouvée !`,
         type: 'editreply'
     }, interaction);
 
@@ -14,5 +14,3 @@ module.exports = async (client, interaction, args) => {
 
     await client.createLeaderboard(`💬・Messages - ${interaction.guild.name}`, lb, interaction);
 }
-
- 
