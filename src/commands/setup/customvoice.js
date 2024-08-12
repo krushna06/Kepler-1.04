@@ -8,7 +8,7 @@ module.exports = async (client, interaction, args) => {
 
     interaction.guild.channels.create({
         name: ChannelName,
-        type:  Discord.ChannelType.GuildVoice,
+        type: Discord.ChannelType.GuildVoice,
         parent: category.id,
         permissionOverwrites: [
             {
@@ -20,8 +20,8 @@ module.exports = async (client, interaction, args) => {
         voiceSchema.findOne({ Guild: interaction.guild.id }, async (err, data) => {
             if (data) {
                 data.Category = category.id;
-                data.Channel = ch.id
-                data.ChannelName = ChannelName
+                data.Channel = ch.id;
+                data.ChannelName = ChannelName;
                 data.save();
             }
             else {
@@ -35,10 +35,10 @@ module.exports = async (client, interaction, args) => {
         });
 
         client.succNormal({
-            text: `Custom voice has been set up successfully!`,
+            text: `Le canal vocal personnalisé a été configuré avec succès !`,
             fields: [
                 {
-                    name: `📘┆Channel`,
+                    name: `📘┆Canal`,
                     value: `${ch} (${ch.name})`
                 }
             ],
@@ -46,5 +46,3 @@ module.exports = async (client, interaction, args) => {
         }, interaction);
     })
 }
-
- 
