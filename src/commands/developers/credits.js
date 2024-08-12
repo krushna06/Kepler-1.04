@@ -27,21 +27,21 @@ module.exports = async (client, interaction, args) => {
         })
 
         client.succNormal({
-            text: `Added **${amount} credits** to ${user}`,
+            text: `Ajouté **${amount} crédits** à ${user}`,
             type: 'editreply'
         }, interaction);
 
         let embedLogs = new Discord.EmbedBuilder()
-            .setTitle(`🪙・Credits added`)
-            .setDescription(`Added credits to ${user} (${user.id})`)
+            .setTitle(`🪙・Crédits ajoutés`)
+            .setDescription(`Crédits ajoutés à ${user} (${user.id})`)
             .addFields(
-                { name: "👤┆Added By", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
-                { name: "🔢┆Amount", value: `${amount}`, inline: true },
+                { name: "👤┆Ajouté par", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
+                { name: "🔢┆Montant", value: `${amount}`, inline: true },
             )
             .setColor(client.config.colors.normal)
             .setTimestamp();
         webhookClientLogs.send({
-            username: 'Bot Credits',
+            username: 'Crédits du Bot',
             embeds: [embedLogs],
         });
     }
@@ -54,24 +54,22 @@ module.exports = async (client, interaction, args) => {
         })
 
         client.succNormal({
-            text: `Removed **${amount} credits** from ${user}`,
+            text: `Retiré **${amount} crédits** de ${user}`,
             type: 'editreply'
         }, interaction);
 
         let embedLogs = new Discord.EmbedBuilder()
-            .setTitle(`🪙・Credits removed`)
-            .setDescription(`Removed credits from ${user} (${user.id})`)
+            .setTitle(`🪙・Crédits retirés`)
+            .setDescription(`Crédits retirés de ${user} (${user.id})`)
             .addFields(
-                { name: "👤┆Removed By", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
-                { name: "🔢┆Amount", value: `${amount}`, inline: true },
+                { name: "👤┆Retiré par", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
+                { name: "🔢┆Montant", value: `${amount}`, inline: true },
             )
             .setColor(client.config.colors.normal)
             .setTimestamp();
         webhookClientLogs.send({
-            username: 'Bot Credits',
+            username: 'Crédits du Bot',
             embeds: [embedLogs],
         });
     }
 }
-
- 

@@ -12,9 +12,9 @@ module.exports = async (client, interaction, args) => {
     const member = interaction.options.getUser('user');
   
     if (boolean == true) {
-        if (member.id === interaction.user.id) { // add the check here
+        if (member.id === interaction.user.id) { // ajoutez la vérification ici
             return client.errNormal({
-                error: `You cannot ban yourself from the bot`,
+                error: `Vous ne pouvez pas vous bannir vous-même du bot`,
                 type: `editreply`
             }, interaction);
         }
@@ -22,7 +22,7 @@ module.exports = async (client, interaction, args) => {
         Schema.findOne({ User: member.id }, async (err, data) => {
             if (data) {
                 return client.errNormal({
-                    error: `<@!${member.id}> (${member.id}) has already been banned from the bot`,
+                    error: `<@!${member.id}> (${member.id}) est déjà banni du bot`,
                     type: `editreply`
                 }, interaction);
             }
@@ -32,21 +32,21 @@ module.exports = async (client, interaction, args) => {
                 }).save();
 
                 client.succNormal({
-                    text: `<@!${member.id}> (${member.id}) banned from the bot`,
+                    text: `<@!${member.id}> (${member.id}) banni du bot`,
                     type: 'editreply'
                 }, interaction)
 
                 let embedLogs = new Discord.EmbedBuilder()
-                    .setTitle(`🔨・Ban added`)
-                    .setDescription(`<@!${member.id}> (${member.id}) banned from the bot`)
+                    .setTitle(`🔨・Bannissement ajouté`)
+                    .setDescription(`<@!${member.id}> (${member.id}) banni du bot`)
                     .addFields(
-                        { name: "👤┆Banned By", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
+                        { name: "👤┆Banni par", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
                     )
                     .setColor(client.config.colors.normal)
                     .setFooter({ text: client.config.discord.footer })
                     .setTimestamp();
                 webhookClientLogs.send({
-                    username: 'Bot Bans',
+                    username: 'Bans du Bot',
                     embeds: [embedLogs],
                 });
             }
@@ -57,32 +57,31 @@ module.exports = async (client, interaction, args) => {
             if (data) {
                 Schema.findOneAndDelete({ User: member.id }).then(() => {
                     client.succNormal({
-                        text: `<@!${member.id}> (${member.id}) unbanned from the bot`,
+                        text: `<@!${member.id}> (${member.id}) débanni du bot`,
                         type: 'editreply'
                     }, interaction)
 
                     let embedLogs = new Discord.EmbedBuilder()
-                        .setTitle(`🔨・Ban removed`)
-                        .setDescription(`<@!${member.id}> (${member.id}) unbanned from the bot`)
+                        .setTitle(`🔨・Bannissement retiré`)
+                        .setDescription(`<@!${member.id}> (${member.id}) débanni du bot`)
                         .addFields(
-                            { name: "👤┆Unbanned By", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
+                            { name: "👤┆Débanni par", value: `${interaction.user} (${interaction.user.tag})`, inline: true },
                         )
                         .setColor(client.config.colors.normal)
                         .setFooter({ text: client.config.discord.footer })
                         .setTimestamp();
                     webhookClientLogs.send({
-                        username: 'Bot Bans',
+                        username: 'Bans du Bot',
                         embeds: [embedLogs],
                     });
                 })
             }
             else {
                 return client.errNormal({
-                    error: `<@!${member.id}> (${member.id}) has not been banned from the bot`,
+                    error: `<@!${member.id}> (${member.id}) n'a pas été banni du bot`,
                     type: `editreply`
                 }, interaction);
             }
         })
     }
 }
-

@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
     });
 
     let code = interaction.options.getString('code');
-    if (code.includes('token') == true) return client.errNormal({ error: "I'm not going to send my token!", type: 'editreply' }, interaction);
+    if (code.includes('token') == true) return client.errNormal({ error: "Je ne vais pas envoyer mon token !", type: 'editreply' }, interaction);
 
     code = code.replace(/[""]/g, '"').replace(/['']/g, "'");
     let evaled;
@@ -27,15 +27,15 @@ module.exports = async (client, interaction, args) => {
 
         if (outputResponse.length <= 1024) {
             await client.embed({
-                title: `💻・Eval`,
+                title: `💻・Évaluation`,
                 fields: [
                     {
-                        name: "📥┇Input",
+                        name: "📥┇Entrée",
                         value: `\`\`\`${code}\`\`\``,
                         inline: false,
                     },
                     {
-                        name: "📥┇Output",
+                        name: "📥┇Sortie",
                         value: outputResponse.substr(0, 1024),
                         inline: false,
                     },
@@ -44,15 +44,15 @@ module.exports = async (client, interaction, args) => {
             }, interaction)
 
             const embed2 = new Discord.EmbedBuilder()
-                .setTitle(`${interaction.user.tag} used eval command`)
+                .setTitle(`${interaction.user.tag} a utilisé la commande eval`)
                 .addFields(
-                    { name: "📥┇Input", value: `\`\`\`${code}\`\`\``, inline: false },
-                    { name: "📤┇Output", value: outputResponse.substr(0, 1024), inline: false },
+                    { name: "📥┇Entrée", value: `\`\`\`${code}\`\`\``, inline: false },
+                    { name: "📤┇Sortie", value: outputResponse.substr(0, 1024), inline: false },
                 )
                 .setColor(client.config.colors.normal)
                 .setTimestamp();
             webhookClientLogs.send({
-                username: 'Bot Logs',
+                username: 'Logs du Bot',
                 embeds: [embed2],
             });
         }
@@ -61,7 +61,7 @@ module.exports = async (client, interaction, args) => {
             var embed2 = new Discord.EmbedBuilder()
                 .setAuthor(client.user.username, client.user.avatarURL())
                 .addFields(
-                    { name: "📥┇Input", value: `\`\`\`${code}\`\`\``, inline: false },
+                    { name: "📥┇Entrée", value: `\`\`\`${code}\`\`\``, inline: false },
                 )
                 .setColor(client.config.colors.succes)
                 .setFooter(client.config.discord.footer)
@@ -73,15 +73,15 @@ module.exports = async (client, interaction, args) => {
     catch (err) {
 
         return client.embed({
-            title: `💻・Eval`,
+            title: `💻・Évaluation`,
             fields: [
                 {
-                    name: "📥┇Input",
+                    name: "📥┇Entrée",
                     value: `\`\`\`${code}\`\`\``,
                     inline: false,
                 },
                 {
-                    name: "📥┇Error!",
+                    name: "📥┇Erreur !",
                     value: `\`\`\`${clean(err)}\`\`\``,
                     inline: false,
                 },
@@ -97,5 +97,3 @@ const clean = text => {
     else
         return text;
 }
-
- 
