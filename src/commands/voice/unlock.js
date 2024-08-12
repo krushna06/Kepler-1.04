@@ -4,27 +4,27 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkBotPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageChannels],
         perms: [Discord.PermissionsBitField.Flags.ManageChannels]
-    }, interaction)
+    }, interaction);
 
     if (perms == false) return;
 
     const channel = interaction.member.voice.channel;
     if (!channel) return client.errNormal({
-        error: `You're not in a voice channel!`,
+        error: `Vous n'êtes pas dans un canal vocal !`,
         type: 'editreply'
     }, interaction);
     var checkVoice = await client.checkVoice(interaction.guild, channel);
     if (!checkVoice) {
         return client.errNormal({
-            error: `You cannot edit this channel!`,
+            error: `Vous ne pouvez pas modifier ce canal !`,
             type: 'editreply'
         }, interaction);
     } else {
         client.succNormal({
-            text: `The channel was succesfully unlocked!`,
+            text: `Le canal a été déverrouillé avec succès !`,
             fields: [
                 {
-                    name: `📘┆Channel`,
+                    name: `📘┆Canal`,
                     value: `${channel} (${channel.name})`
                 }
             ],
