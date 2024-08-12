@@ -18,7 +18,7 @@ module.exports = async (client, interaction, args) => {
             var warn = data.Warnings.find(x => x.Case == Case);
             if (!warn) {
                 client.errNormal({
-                    error: "This user doesn't have a warning with this case number!",
+                    error: "Cet utilisateur n'a pas d'avertissement avec ce numéro de cas !",
                     type: 'editreply'
                 }, interaction);
                 return;
@@ -28,18 +28,18 @@ module.exports = async (client, interaction, args) => {
         }
         else {
             client.errNormal({ 
-                error: "User has no warnings!", 
+                error: "L'utilisateur n'a pas d'avertissements !", 
                 type: 'editreply'
             }, interaction);
         }
     })
 
     client.embed({
-        title: `🔨・Unwarn`,
-        desc: `You've been unwarned in **${interaction.guild.name}**`,
+        title: `🔨・Annulation d'avertissement`,
+        desc: `Vous avez été désaverti dans **${interaction.guild.name}**`,
         fields: [
             {
-                name: "👤┆Moderator",
+                name: "👤┆Modérateur",
                 value: interaction.user.tag,
                 inline: true
             },
@@ -48,10 +48,10 @@ module.exports = async (client, interaction, args) => {
 
     client.emit('warnRemove', member, interaction.user)
     client.succNormal({
-        text: `The user's warning has been successfully removed`,
+        text: `L'avertissement de l'utilisateur a été supprimé avec succès`,
         fields: [
             {
-                name: "👤┆User",
+                name: "👤┆Utilisateur",
                 value: `${member}`,
                 inline: true
             }
@@ -59,5 +59,3 @@ module.exports = async (client, interaction, args) => {
         type: 'editreply'
     }, interaction);
 }
-
- 

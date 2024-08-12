@@ -11,24 +11,25 @@ module.exports = async (client, interaction, args) => {
   if (perms == false) return;
 
   const member = await interaction.guild.members.fetch(interaction.options.getUser('user').id);
-  const reason = interaction.options.getString('reason') || 'Not given';
+  const reason = interaction.options.getString('reason') || 'Non spécifiée';
 
-  if (member.permissions.has(Discord.PermissionsBitField.Flags.BanMembers) || member.permissions.has(Discord.PermissionsBitField.Flags.BanMembers)) return client.errNormal({
-    error: "You can't ban a moderator",
-    type: 'editreply'
-  }, interaction);
+  if (member.permissions.has(Discord.PermissionsBitField.Flags.BanMembers) || member.permissions.has(Discord.PermissionsBitField.Flags.BanMembers)) 
+    return client.errNormal({
+      error: "Vous ne pouvez pas bannir un modérateur",
+      type: 'editreply'
+    }, interaction);
 
   client.embed({
-    title: `🔨・Ban`,
-    desc: `You've been banned in **${interaction.guild.name}**`,
+    title: `🔨・Bannissement`,
+    desc: `Vous avez été banni de **${interaction.guild.name}**`,
     fields: [
       {
-        name: "👤┆Banned by",
+        name: "👤┆Banni par",
         value: interaction.user.tag,
         inline: true
       },
       {
-        name: "💬┆Reason",
+        name: "💬┆Raison",
         value: reason,
         inline: true
       }
@@ -36,15 +37,15 @@ module.exports = async (client, interaction, args) => {
   }, member).then(async function () {
     member.ban({ reason: reason })
     client.succNormal({
-      text: "The specified user has been successfully banned and successfully received a notification!",
+      text: "L'utilisateur spécifié a été banni avec succès et a reçu une notification !",
       fields: [
         {
-          name: "👤┆Banned user",
+          name: "👤┆Utilisateur banni",
           value: member.user.tag,
           inline: true
         },
         {
-          name: "💬┆Reason",
+          name: "💬┆Raison",
           value: reason,
           inline: true
         }
@@ -52,8 +53,8 @@ module.exports = async (client, interaction, args) => {
       type: 'editreply'
     }, interaction);
 
-    const expires = new Date()
-    expires.setMinutes(expires.getMinutes() + parseInt(interaction.options.getNumber('time')))
+    const expires = new Date();
+    expires.setMinutes(expires.getMinutes() + parseInt(interaction.options.getNumber('time')));
 
     await new TempSchema({
       guildId: interaction.guild.id,
@@ -64,12 +65,12 @@ module.exports = async (client, interaction, args) => {
   }).catch(async function () {
     member.ban({ reason: reason })
     client.succNormal({
-      text: "The given user has been successfully banned, but has not received a notification!",
+      text: "L'utilisateur donné a été banni avec succès, mais n'a pas reçu de notification !",
       type: 'editreply'
     }, interaction);
 
-    const expires = new Date()
-    expires.setMinutes(expires.getMinutes() + parseInt(interaction.options.getNumber('time')))
+    const expires = new Date();
+    expires.setMinutes(expires.getMinutes() + parseInt(interaction.options.getNumber('time')));
 
     await new TempSchema({
       guildId: interaction.guild.id,
@@ -78,5 +79,3 @@ module.exports = async (client, interaction, args) => {
     }).save();
   });
 }
-
- 

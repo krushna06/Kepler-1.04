@@ -12,11 +12,11 @@ module.exports = async (client, interaction, args) => {
 
   member.roles.remove(member.roles.highest.id).then(r => {
     client.embed({
-      title: `🔨・Demote`,
-      desc: `You've been demoted from **${interaction.guild.name}**`,
+      title: `🔨・Déclassement`,
+      desc: `Vous avez été déclassé dans **${interaction.guild.name}**`,
       fields: [
         {
-          name: "👤┆Moderator",
+          name: "👤┆Modérateur",
           value: interaction.user.tag,
           inline: true
         },
@@ -24,9 +24,9 @@ module.exports = async (client, interaction, args) => {
     }, member).catch(() => { })
 
     client.succNormal({
-      text: `User successfully demoted`, fields: [
+      text: `L'utilisateur a été déclassé avec succès`, fields: [
         {
-          name: "👤┆User",
+          name: "👤┆Utilisateur",
           value: `${member}`,
           inline: true
         }
@@ -35,10 +35,8 @@ module.exports = async (client, interaction, args) => {
     }, interaction);
   }).catch(e => {
     client.errNormal({
-      error: "I can't demote the user",
+      error: "Je ne peux pas déclasser l'utilisateur",
       type: 'editreply'
     }, interaction)
   });
 }
-
- 

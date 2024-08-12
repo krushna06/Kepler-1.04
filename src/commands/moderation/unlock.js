@@ -15,15 +15,13 @@ module.exports = async (client, interaction, args) => {
     });
 
     client.succNormal({
-        text: "Channel unlocked successfully!",
+        text: "Canal débloqué avec succès !",
         fields: [
             {
-                name: `📘┆Channel`,
+                name: `📘┆Canal`,
                 value: `${channel} (${channel.name})`
             }
         ],
         type: 'editreply'
     }, interaction);
 }
-
- 

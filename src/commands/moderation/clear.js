@@ -11,21 +11,21 @@ module.exports = async (client, interaction, args) => {
     const amount = interaction.options.getNumber('amount');
 
     if (amount > 100) return client.errNormal({
-        error: "I cannot delete more than 100 messages at a time!",
+        error: "Je ne peux pas supprimer plus de 100 messages à la fois !",
         type: 'editreply'
     }, interaction);
 
     if (amount < 1) return client.errNormal({
-        error: "I cannot delete less than 1 message!",
+        error: "Je ne peux pas supprimer moins de 1 message !",
         type: 'editreply'
     }, interaction);
 
     interaction.channel.bulkDelete(amount + 1).then(() => {
         client.succNormal({
-            text: `I have successfully deleted the messages`,
+            text: `J'ai supprimé les messages avec succès`,
             fields: [
                 {
-                    name: "💬┆Amount",
+                    name: "💬┆Nombre",
                     value: `${amount}`,
                     inline: true
                 }
@@ -34,10 +34,8 @@ module.exports = async (client, interaction, args) => {
         }, interaction)
     }).catch(err => {
         client.errNormal({
-            error: "There was an error trying to delete messages in this channel!",
+            error: "Il y a eu une erreur en essayant de supprimer les messages dans ce canal !",
             type: 'editreply'
         }, interaction);
     });
 }
-
- 
