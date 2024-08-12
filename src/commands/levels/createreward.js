@@ -9,14 +9,14 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction)
+    }, interaction);
 
     if (perms == false) return;
 
     Schema.findOne({ Guild: interaction.guild.id, Level: level }, async (err, data) => {
         if (data) {
             return client.errNormal({ 
-                error: "This level already has a reward!",
+                error: "Ce niveau a déjà une récompense !",
                 type: 'editreply'
             }, interaction);
         }
@@ -28,10 +28,10 @@ module.exports = async (client, interaction, args) => {
             }).save();
 
             client.succNormal({ 
-                text: `Level reward created`,
+                text: `Récompense de niveau créée`,
                 fields: [
                     {
-                        name: "📘┆Role",
+                        name: "📘┆Rôle",
                         value: `${role}`,
                         inline: true,
                     }
@@ -39,7 +39,5 @@ module.exports = async (client, interaction, args) => {
                 type: 'editreply'
             }, interaction);
         }
-    })
+    });
 }
-
- 

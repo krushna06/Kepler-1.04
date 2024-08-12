@@ -11,7 +11,7 @@ module.exports = async (client, interaction, args) => {
         const target = interaction.options.getUser('user') || interaction.user;
         const user = await client.fetchLevels(target.id, interaction.guild.id);
         if(!user || !user.xp) return client.errNormal({
-            error: "This user has no levels!",
+            error: "Cet utilisateur n'a pas de niveaux !",
             type: 'editreply'
         }, interaction);
         let xpRequired = client.xpFor(user.level + 1);
@@ -25,7 +25,7 @@ module.exports = async (client, interaction, args) => {
             .setUsername(target.username)
             .setDiscriminator(target.discriminator)
             .setStatus("dnd")
-            .setRank(user.position)
+            .setRank(user.position);
 
         rankCard.build()
             .then(data => {
@@ -35,9 +35,8 @@ module.exports = async (client, interaction, args) => {
     }
     else {
         client.errNormal({
-            error: "Levels are disabled in this guild!",
+            error: "Les niveaux sont désactivés dans ce serveur !",
             type: 'editreply'
         }, interaction);
     }
 }
-

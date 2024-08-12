@@ -8,7 +8,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction)
+    }, interaction);
 
     if (perms == false) return;
     
@@ -16,25 +16,23 @@ module.exports = async (client, interaction, args) => {
         if (data) {
             Schema.findOneAndDelete({ Guild: interaction.guild.id, Level: level }).then(() => {
                 client.succNormal({
-                    text: `Level reward removed`,
+                    text: `Récompense de niveau supprimée`,
                     fields: [
                         {
-                            name: "🆙┆Level",
+                            name: "🆙┆Niveau",
                             value: `${level}`,
                             inline: true,
                         }
                     ],
                     type: 'editreply'
                 }, interaction);
-            })
+            });
         }
         else {
             return client.errNormal({
-                error: "No level reward found at this level!",
+                error: "Aucune récompense trouvée à ce niveau !",
                 type: 'editreply'
             }, interaction);
         }
-    })
+    });
 }
-
- 
