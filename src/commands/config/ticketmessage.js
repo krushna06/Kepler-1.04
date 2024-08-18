@@ -18,14 +18,14 @@ module.exports = async (client, interaction, args) => {
             const data = await Schema.findOne({ Guild: interaction.guild.id })
 
             if (data) {
-                data.openTicket = "Merci d'avoir créé un ticket ! \nLe support sera avec vous sous peu \n\n🔒 - Fermer le ticket \n✋ - Réclamer le ticket \n📝 - Sauvegarder la transcription \n🔔 - Envoyer une notification";
+                data.openTicket = "Thanks for creating a ticket! \nSupport will be with you shortly \n\n🔒 - Close ticket \n✋ - Claim ticket \n📝 - Save transcript \n🔔 - Send a notification";
                 data.save();
 
                 client.succNormal({
-                    text: `Le message du ticket a été défini avec succès`,
+                    text: `The ticket message has been set successfully`,
                     fields: [
                         {
-                            name: `📘┆Type de message`,
+                            name: `📘┆Message type`,
                             value: `${type}`,
                             inline: true
                         },
@@ -40,7 +40,7 @@ module.exports = async (client, interaction, args) => {
             }
             else {
                 client.errNormal({
-                    error: `Aucune donnée de message de ticket trouvée !`,
+                    error: `No ticket message data found!`,
                     type: 'editreply'
                 }, interaction)
             }
@@ -62,10 +62,10 @@ module.exports = async (client, interaction, args) => {
         })
 
         client.succNormal({
-            text: `Le message du ticket a été défini avec succès`,
+            text: `The ticket message has been set successfully`,
             fields: [
                 {
-                    name: `📘┆Type de message`,
+                    name: `📘┆Message type`,
                     value: `${type}`,
                     inline: true
                 },
@@ -83,14 +83,14 @@ module.exports = async (client, interaction, args) => {
             const data = await Schema.findOne({ Guild: interaction.guild.id })
 
             if (data) {
-                data.dmMessage = "Voici la transcription de votre ticket, veuillez la conserver si vous souhaitez y faire référence !";
+                data.dmMessage = "Here is the transcript for your ticket, please keep this if you ever want to refer to it!";
                 data.save();
 
                 client.succNormal({
-                    text: `Le message du ticket a été défini avec succès`,
+                    text: `The ticket message has been set successfully`,
                     fields: [
                         {
-                            name: `📘┆Type de message`,
+                            name: `📘┆Message type`,
                             value: `${type}`,
                             inline: true
                         },
@@ -105,7 +105,7 @@ module.exports = async (client, interaction, args) => {
             }
             else {
                 client.errNormal({
-                    error: `Aucune donnée de message de ticket trouvée !`,
+                    error: `No ticket message data found!`,
                     type: 'editreply'
                 }, interaction)
             }
@@ -127,10 +127,10 @@ module.exports = async (client, interaction, args) => {
         })
 
         client.succNormal({
-            text: `Le message du ticket a été défini avec succès`,
+            text: `The ticket message has been set successfully`,
             fields: [
                 {
-                    name: `📘┆Type de message`,
+                    name: `📘┆Message type`,
                     value: `${type}`,
                     inline: true
                 },
@@ -144,3 +144,5 @@ module.exports = async (client, interaction, args) => {
         }, interaction)
     }
 }
+
+ 

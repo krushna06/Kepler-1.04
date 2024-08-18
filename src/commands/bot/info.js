@@ -16,30 +16,30 @@ module.exports = async (client, interaction, args) => {
             const totalChannels = results[2].reduce((acc, channelCount) => acc + channelCount, 0);
             const totalVoice = results[3].reduce((acc, voiceCount) => acc + voiceCount, 0);
 
-            const duration = moment.duration(client.uptime).format("\`J\` [jours], \`H\` [hrs], \`m\` [mins], \`s\` [secs]");
+            const duration = moment.duration(client.uptime).format("\`D\` [days], \`H\` [hrs], \`m\` [mins], \`s\` [secs]");
 
             client.embed({
-                title: `ℹ・Informations du bot`,
+                title: `ℹ・Bot information`,
                 desc: `____________________________`,
                 thumbnail: client.user.avatarURL({ size: 1024 }),
                 fields: [
                {
-                    name: "ℹ️┆Informations",
-                    value: `Le bot est un bot avec lequel vous pouvez gérer l'ensemble de votre serveur! Avec pas moins de 350+ commandes, nous avons un grand bot avec de nombreuses options pour améliorer votre serveur!`,
+                    name: "ℹ️┆Information",
+                    value: `Bot is a bot with which you can run your entire server! With no less than 350+ commands, we have a large bot with many options to improve your server!`,
                     inline: false,
                 },
                 {
-                    name: "_____ \n\n│Général",
+                    name: "_____ \n\n│General",
                     value: `_____`,
                     inline: false,
                 },
                 {
-                    name: "🤖┆Nom du bot",
+                    name: "🤖┆Bot name",
                     value: `${client.user.username}`,
                     inline: true,
                 },
                 {
-                    name: "🆔┆ID du bot",
+                    name: "🆔┆Bot id",
                     value: `${client.user.id}`,
                     inline: true,
                 },
@@ -49,53 +49,53 @@ module.exports = async (client, interaction, args) => {
                     inline: true,
                 },
                 {
-                    name: "🔧┆Propriétaire du bot",
+                    name: "🔧┆Bot owner",
                     value: `<@!755297485328482356> `,
                     inline: true,
                 },
                 {
-                    name: "🔧┆Développeur du bot",
+                    name: "🔧┆Bot developer",
                     value: `<@!755297485328482356> <@!884553151666061372>`,
                     inline: true,
                 },
                 {
-                    name: "💻┆Commandes",
-                    value: `\`${client.commands.size}\` commandes`,
+                    name: "💻┆Commands",
+                    value: `\`${client.commands.size}\` commands`,
                     inline: true,
                 },
                 {
-                    name: "🌐┆Serveurs",
-                    value: `\`${totalGuilds}\` serveurs`,
+                    name: "🌐┆Servers",
+                    value: `\`${totalGuilds}\` servers`,
                     inline: true,
                 },
                 {
-                    name: "🌐┆Serveurs sur ce shard",
-                    value: `\`${client.guilds.cache.size}\` serveurs`,
+                    name: "🌐┆Servers this shard",
+                    value: `\`${client.guilds.cache.size}\` servers`,
                     inline: true,
                 },
                 {
-                    name: "👥┆Membres",
-                    value: `\`${totalMembers}\` membres`,
+                    name: "👥┆Members",
+                    value: `\`${totalMembers}\` members`,
                     inline: true,
                 },
                 {
-                    name: "🔊┆Canaux connectés",
-                    value: `\`${totalVoice}\` canaux`,
+                    name: "🔊┆Connected channels",
+                    value: `\`${totalVoice}\` channels`,
                     inline: true,
                 },
                 {
-                    name: "📺┆Canaux",
-                    value: `\`${totalChannels}\` canaux`,
+                    name: "📺┆Channels",
+                    value: `\`${totalChannels}\` channels`,
                     inline: true,
                 },
                 {
-                    name: "📅┆Créé",
+                    name: "📅┆Created",
                     value: `<t:${Math.round(client.user.createdTimestamp / 1000)}>`,
                     inline: true,
                 },
 
                 {
-                    name: "_____ \n\n│Système",
+                    name: "_____ \n\n│System",
                     value: `_____`,
                     inline: false,
                 },
@@ -105,36 +105,38 @@ module.exports = async (client, interaction, args) => {
                     inline: true,
                 },
                 {
-                    name: "⌛┆Vitesse API:",
+                    name: "⌛┆API speed:",
                     value: `\`${client.ws.ping}\`ms`,
                     inline: true,
                 },
                 {
-                    name: "🏷┆Version du bot",
+                    name: "🏷┆Bot Version",
                     value: `\`${require(`${process.cwd()}/package.json`).version}\``,
                     inline: true,
                 },
                 {
-                    name: "🏷┆Version Node.js",
+                    name: "🏷┆Node.js Version",
                     value: `\`${process.version}\``,
                     inline: true,
                 },
                 {
-                    name: "📂┆Version Discord.js",
+                    name: "📂┆Discord.js Version",
                     value: `\`${Discord.version}\``,
                     inline: true,
                 },
                 {
-                    name: "💾┆Mémoire utilisée par le bot",
+                    name: "💾┆Bot memory",
                     value: `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}\` MB`,
                     inline: true,
                 },
                 {
-                    name: "🔗┆Liens",
-                    value: `Ajoutez-moi : [[ICI]](${client.config.discord.botInvite}) \nServeur de support : [[ICI]](${client.config.discord.serverInvite})`,
+                    name: "🔗┆Links",
+                    value: `Add me: [[HERE]](${client.config.discord.botInvite}) \nSupport server: [[HERE]](${client.config.discord.serverInvite})`,
                     inline: false,
                 }],
                 type: 'editreply'
             }, interaction)
         })
 }
+
+ 

@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 
 const Schema = require("../../database/models/warnings");
 const Case = require("../../database/models/warnCase");
-
 module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
@@ -11,7 +10,7 @@ module.exports = async (client, interaction, args) => {
 
     if (perms == false) {
         client.errNormal({
-            error: "Vous n'avez pas les autorisations nécessaires pour utiliser cette commande !",
+            error: "You don't have the required permissions to use this command!",
             type: 'editreply'
         }, interaction);
         return;
@@ -60,16 +59,16 @@ module.exports = async (client, interaction, args) => {
     })
 
     client.embed({
-        title: `🔨・Avertir`,
-        desc: `Vous avez été averti dans **${interaction.guild.name}**`,
+        title: `🔨・Warn`,
+        desc: `You've been warned in **${interaction.guild.name}**`,
         fields: [
             {
-                name: "👤┆Modérateur",
+                name: "👤┆Moderator",
                 value: interaction.user.tag,
                 inline: true
             },
             {
-                name: "📄┆Raison",
+                name: "📄┆Reason",
                 value: reason,
                 inline: true
             }
@@ -78,20 +77,20 @@ module.exports = async (client, interaction, args) => {
 
     client.emit('warnAdd', member, interaction.user, reason)
     client.succNormal({
-        text: `L'utilisateur a reçu un avertissement !`,
+        text: `User has received a warning!`,
         fields: [
             {
-                name: "👤┆Utilisateur",
+                name: "👤┆User",
                 value: `${member}`,
                 inline: true
             },
             {
-                name: "👤┆Modérateur",
+                name: "👤┆Moderator",
                 value: `${interaction.user}`,
                 inline: true
             },
             {
-                name: "📄┆Raison",
+                name: "📄┆Reason",
                 value: reason,
                 inline: false
             }
@@ -99,3 +98,5 @@ module.exports = async (client, interaction, args) => {
         type: 'editreply'
     }, interaction);
 }
+
+ 

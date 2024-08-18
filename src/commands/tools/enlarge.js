@@ -14,7 +14,8 @@ module.exports = async (client, interaction, args) => {
             type: 'editreply'
         }, interaction)
     } else {
-        client.errNormal({ error: "Veuillez fournir un emoji valide !", type: 'editreply' }, interaction)
+        client.errNormal({ error: "Please supply a valid emoji!", type: 'editreply' }, interaction)
     }
 }
 
+ 

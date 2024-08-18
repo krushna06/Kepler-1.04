@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction);
+    }, interaction)
 
     if (perms == false) return;
 
@@ -27,7 +27,7 @@ module.exports = async (client, interaction, args) => {
     }
 
     client.succNormal({
-        text: `Ajouté **${amount}** messages à ${user}`,
+        text: `Added **${amount}** messages to ${user}`,
         fields: [
             {
                 name: "💬┆Total messages",
@@ -38,3 +38,5 @@ module.exports = async (client, interaction, args) => {
         type: 'editreply'
     }, interaction);
 }
+
+ 

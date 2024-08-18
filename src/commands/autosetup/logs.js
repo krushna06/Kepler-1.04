@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "serverLogs") {
         interaction.guild.channels.create({
-            name: "logs-du-serveur",
+            name: "server-logs",
             permissionOverwrites: [
                 {
                     deny: [Discord.PermissionsBitField.Flags.ViewChannel],
@@ -24,7 +24,7 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "levelLogs") {
         interaction.guild.channels.create({
-            name: "logs-des-niveaux",
+            name: "level-logs",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.createChannelSetup(levelLogs, ch, interaction)
@@ -40,3 +40,4 @@ module.exports = async (client, interaction, args) => {
         })
     }
 }
+

@@ -10,8 +10,8 @@ module.exports = async (client, interaction, args) => {
     const upper = lower.charAt(0).toUpperCase() + lower.substring(1);
 
     Schema.findOne({ Guild: interaction.guild.id, Category: category }, async (err, data) => {
-        if (!data) return client.errNormal({
-            error: `Aucune donnée trouvée !`,
+        if (!data) return client.errNormal({ 
+            error: `No data found!`,
             type: 'editreply'
         }, interaction);
 
@@ -23,21 +23,22 @@ module.exports = async (client, interaction, args) => {
             }).join("\n");
 
         const reactions = Object.values(data.Roles).map((val) => val[1].raw);
-        var sendComponents = await client.buttonReactions("id", reactions);
+        var sendComponents = await client.buttonReactions("id", reactions)
 
         client.embed({
-            title: `${upper}・Rôles`,
-            desc: `_____ \n\nChoisissez vos rôles en appuyant sur le bouton ! \n\n${mapped}`,
+            title: `${upper}・Roles`,
+            desc: `_____ \n\nChoose your roles by pressing the button! \n\n${mapped}`,
             components: sendComponents
         }, channel).then((msg) => {
             data.Message = msg.id;
             data.save();
-        });
+        })
 
-        client.succNormal({
-            text: "Panneau de réaction créé avec succès !",
+        client.succNormal({ 
+            text: "Reaction panel successfully created!",
             type: 'ephemeraledit'
         }, interaction);
-    });
+    })
 }
 
+ 

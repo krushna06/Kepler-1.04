@@ -11,7 +11,7 @@ module.exports = async (client, interaction, args) => {
             let money = parseInt(interaction.options.getNumber('amount'));
             if (!money) return client.errUsage({ usage: "crash [amount]", type: 'editreply' }, interaction);
 
-            if (money > data.Money) return client.errNormal({ error: `Vous pariez plus que ce que vous avez !`, type: 'editreply' }, interaction);
+            if (money > data.Money) return client.errNormal({ error: `You are betting more than you have!`, type: 'editreply' }, interaction);
 
             const row = new Discord.ActionRowBuilder()
                 .addComponents(
@@ -31,10 +31,10 @@ module.exports = async (client, interaction, args) => {
                 )
 
             client.embed({
-                desc: `Crash démarré par ${user}・Réagissez avec 🛑 pour arrêter`,
+                desc: `Crash started by ${user}・React 🛑 to stop`,
                 fields: [
                     {
-                        name: `Multiplicateur`,
+                        name: `Multiplier`,
                         value: `1x`,
                         inline: true,
                     },
@@ -65,12 +65,12 @@ module.exports = async (client, interaction, args) => {
                         })
 
                         return client.embed({
-                            title: `Résultats de Crash pour ${user}`,
+                            title: `Crash Results of ${user}`,
                             desc: `${msg}`,
                             type: 'edit',
                             fields: [
                                 {
-                                    name: `Perte`,
+                                    name: `Loss`,
                                     value: `**${money}**`,
                                     inline: false,
                                 }
@@ -86,11 +86,11 @@ module.exports = async (client, interaction, args) => {
                         let profit = calc - money;
 
                         client.embed({
-                            desc: `Crash démarré par ${user}・Réagissez avec 🛑 pour arrêter`,
+                            desc: `Crash started by ${user}・React 🛑 to stop`,
                             type: 'edit',
                             fields: [
                                 {
-                                    name: `Multiplicateur`,
+                                    name: `Multiplier`,
                                     value: `${multiplier.toFixed(1)}x`,
                                     inline: true,
                                 },
@@ -122,7 +122,7 @@ module.exports = async (client, interaction, args) => {
                             })
 
                             return client.embed({
-                                desc: `Résultats de Crash pour ${user}`,
+                                desc: `Crash Results of ${user}`,
                                 fields: [
                                     {
                                         name: `Profit`,
@@ -148,11 +148,11 @@ module.exports = async (client, interaction, args) => {
                             }
                         )
                         return client.embed({
-                            desc: `Résultats de Crash pour ${user}`,
+                            desc: `Crash Results of ${user}`,
                             type: 'edit',
                             fields: [
                                 {
-                                    name: `Perte`,
+                                    name: `Loss`,
                                     value: `**${money}**`,
                                     inline: false,
                                 }
@@ -165,7 +165,7 @@ module.exports = async (client, interaction, args) => {
 
         }
         else {
-            client.errNormal({ error: `Vous n'avez pas de ${client.emotes.economy.coins}!`, type: 'editreply' }, interaction);
+            client.errNormal({ error: `You has no ${client.emotes.economy.coins}!`, type: 'editreply' }, interaction);
         }
     })
 }

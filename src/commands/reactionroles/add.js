@@ -9,9 +9,9 @@ module.exports = async (client, interaction, args) => {
 
     const parsedEmoji = Discord.parseEmoji(emoji);
     if (!parsedEmoji) return client.errNormal({
-        error: `Émoji non trouvé sur ce serveur !`,
+        error: `Emoji not found in this server!`,
         type: 'editreply'
-    }, interaction);
+    }, interaction)
 
     Schema.findOne({ Guild: interaction.guild.id, Category: category }, async (err, data) => {
         if (data) {
@@ -21,9 +21,9 @@ module.exports = async (client, interaction, args) => {
                     id: parsedEmoji.id,
                     raw: emoji
                 }
-            ];
+            ]
 
-            await Schema.findOneAndUpdate({ Guild: interaction.guild.id, Category: category }, data);
+            await Schema.findOneAndUpdate({ Guild: interaction.guild.id, Category: category }, data)
         }
         else {
             new Schema({
@@ -42,22 +42,23 @@ module.exports = async (client, interaction, args) => {
             }).save();
         }
 
-        client.succNormal({
-            text: "Rôle de réaction créé avec succès ! Créez un panneau de la manière suivante",
+        client.succNormal({ 
+            text: "Reaction role successfully created! Create a panel in the following way",
             fields: [
                 {
-                    name: `📘┆Panneau de menu`,
-                    value: `\`/reactionroles menu [nom de la catégorie]\``,
+                    name: `📘┆Menu panel`,
+                    value: `\`/reactionroles menu [category name]\``,
                     inline: true
                 },
                 {
-                    name: `📘┆Panneau de bouton`,
-                    value: `\`/reactionroles button [nom de la catégorie]\``,
+                    name: `📘┆Button panel`,
+                    value: `\`/reactionroles button [category name]\``,
                     inline: true
                 }
             ],
             type: 'editreply'
         }, interaction);
-    });
+    })
 }
 
+ 

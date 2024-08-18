@@ -18,7 +18,7 @@ module.exports = async (client, interaction, args) => {
             }
         }, channel).then((msg) => {
             client.succNormal({
-                text: `Suggestion soumise avec succès !`,
+                text: `Suggestion successfully submitted!`,
                 fields: [
                     {
                         name: `💬┇Suggestion`,
@@ -26,7 +26,7 @@ module.exports = async (client, interaction, args) => {
                         inline: true
                     },
                     {
-                        name: `📘┇Canal`,
+                        name: `📘┇Channel`,
                         value: `<#${data.Channel}>`,
                         inline: true
                     }
@@ -38,15 +38,17 @@ module.exports = async (client, interaction, args) => {
             msg.react(client.emotes.normal.arrowDown);
         }).catch((e) => {
             return client.errNormal({
-                error: `Aucun canal de suggestions défini ! Veuillez effectuer la configuration`,
+                error: `No suggestion channel set! Please do the setup`,
                 type: 'editreply'
             }, interaction)
         })
     }
     else {
         client.errNormal({
-            error: `Aucun canal de suggestions défini ! Veuillez effectuer la configuration`,
+            error: `No suggestion channel set! Please do the setup`,
             type: 'editreply'
         }, interaction);
     }
 }
+
+ 

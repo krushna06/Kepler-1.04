@@ -10,11 +10,13 @@ module.exports = async (client, interaction, args) => {
         );
 
     client.embed({
-        title: `${client.user.username}・Faire un don`,
-        desc: '_____ \n\nCliquez sur le bouton ci-dessous pour accéder à la page du sponsor \n**Attention ! Le parrainage n\'est pas obligatoire**',
+        title: `${client.user.username}・Donate`,
+        desc: '_____ \n\nClick the button below for the sponsor page \n**Pay attention! sponsor is not required**',
         thumbnail: client.user.avatarURL({ dynamic: true }),
         url: "https://paypal.me/krushna06",
         components: [row],
         type: 'editreply'
     }, interaction)
 }
+
+ 

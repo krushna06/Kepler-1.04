@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "welcomechannel") {
         interaction.guild.channels.create({
-            name: "Bienvenue",
+            name: "Welcome",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.createChannelSetup(welcomeChannel, ch, interaction)
@@ -18,7 +18,7 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "welcomerole") {
         interaction.guild.roles.create({
-            name: 'Membre',
+            name: 'Member',
             color: client.config.colors.normal
         }).then((rl) => {
             client.createRoleSetup(welcomeRole, rl, interaction)
@@ -27,10 +27,12 @@ module.exports = async (client, interaction, args) => {
 
     if (choice == "leavechannel") {
         interaction.guild.channels.create({
-            name: "Au revoir",
+            name: "Bye",
             type: Discord.ChannelType.GuildText
         }).then((ch) => {
             client.createChannelSetup(leaveChannel, ch, interaction)
         })
     }
 }
+
+ 

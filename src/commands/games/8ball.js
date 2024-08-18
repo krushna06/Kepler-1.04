@@ -4,40 +4,42 @@ module.exports = async (client, interaction, args) => {
 
     const question = interaction.options.getString('question');
 
-    var reponses = [
-        "Oui !",
-        "Malheureusement non",
-        "Vous avez tout à fait raison !",
-        "Non, désolé.",
-        "Je suis d'accord",
-        "Aucune idée !",
-        "Je ne suis pas si intelligent ..",
-        "Mes sources disent non !",
-        "C'est certain",
-        "Vous pouvez compter là-dessus",
-        "Probablement pas",
-        "Tout indique un non",
-        "Sans aucun doute",
-        "Absolument",
-        "Je ne sais pas"
+    var antwoorden = [
+        "Yes!",
+        "Unfortunately not",
+        "You are absolutely right!",
+        "No, sorry.",
+        "I agree",
+        "No idea!",
+        "I am not that smart ..",
+        "My sources say no!",
+        "It is certain",
+        "You can rely on it",
+        "Probably not",
+        "Everything points to a no",
+        "No doubt",
+        "Absolutely",
+        "I do not know"
     ];
-    var resultat = Math.floor((Math.random() * reponses.length));
+    var resultaat = Math.floor((Math.random() * antwoorden.length));
 
     client.embed({
         title: `${client.emotes.normal.ball}・8ball`,
-        desc: `Voir la réponse à votre question !`,
+        desc: `See the answer on your question!`,
         fields: [
             {
-                name: `💬┆Votre Question`,
+                name: `💬┆Your Question`,
                 value: `\`\`\`${question}\`\`\``,
                 inline: false
             },
             {
-                name: `🤖┆Réponse du Bot`,
-                value: `\`\`\`${reponses[resultat]}\`\`\``,
+                name: `🤖┆Bot Answer`,
+                value: `\`\`\`${antwoorden[resultaat]}\`\`\``,
                 inline: false
             }
         ],
         type: 'editreply'
     }, interaction);
 }
+
+ 

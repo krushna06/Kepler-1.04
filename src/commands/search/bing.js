@@ -10,7 +10,7 @@ module.exports = async (client, interaction, args) => {
         fields: [
             {
                 name: `🔗┇Link`,
-                value: `[Cliquez ici pour voir le lien](${link})`,
+                value: `[Click here to see the link](${link})`,
                 inline: true,
             }
         ], type: 'editreply'

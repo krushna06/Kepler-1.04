@@ -10,7 +10,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction);
+    }, interaction)
 
     if (perms == false) return;
     
@@ -21,15 +21,15 @@ module.exports = async (client, interaction, args) => {
         const user = await client.setXP(target.id, interaction.guild.id, xp);
 
         client.succNormal({ 
-            text: `XP modifié avec succès`,
+            text: `XP has been modified successfully`,
             fields: [
                 {
-                    name: "🆕┆Nouveau XP",
+                    name: "🆕┆New XP",
                     value: `${user.xp}`,
                     inline: true,
                 },
                 {
-                    name: "👤┆Utilisateur",
+                    name: "👤┆User",
                     value: `${target} (${target.tag})`,
                     inline: true,
                 }
@@ -39,8 +39,10 @@ module.exports = async (client, interaction, args) => {
     }
     else {
         client.errNormal({
-            error: "Les niveaux sont désactivés dans ce serveur !",
+            error: "Levels are disabled in this guild!",
             type: 'editreply'
         }, interaction);
     }
 }
+
+ 

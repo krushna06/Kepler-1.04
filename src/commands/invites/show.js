@@ -8,8 +8,8 @@ module.exports = async (client, interaction, args) => {
     Schema.findOne({ Guild: interaction.guild.id, User: user.id }, async (err, data) => {
         if (data) {
             client.embed({
-                title: "📨・Invitations",
-                desc: `**${user.tag}** a \`${data.Invites}\` invitations`,
+                title: "📨・Invites",
+                desc: `**${user.tag}** has \`${data.Invites}\` invites`,
                 fields: [
                     {
                         name: "Total",
@@ -17,18 +17,18 @@ module.exports = async (client, interaction, args) => {
                         inline: true
                     },
                     {
-                        name: "Restant",
+                        name: "Left",
                         value: `${data.Left}`,
                         inline: true
                     }
                 ],
                 type: 'editreply'
-            }, interaction);
+            }, interaction)
         }
         else {
             client.embed({
-                title: "📨・Invitations",
-                desc: `**${user.tag}** a \`0\` invitations`,
+                title: "📨・Invites",
+                desc: `**${user.tag}** has \`0\` invites`,
                 fields: [
                     {
                         name: "Total",
@@ -36,13 +36,15 @@ module.exports = async (client, interaction, args) => {
                         inline: true
                     },
                     {
-                        name: "Restant",
+                        name: "Left",
                         value: `0`,
                         inline: true
                     }
                 ],
                 type: 'editreply'
-            }, interaction);
+            }, interaction)
         }
     });
 }
+
+ 

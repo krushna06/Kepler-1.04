@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction);
+    }, interaction)
 
     if (perms == false) return;
 
@@ -30,10 +30,10 @@ module.exports = async (client, interaction, args) => {
     }
 
     client.succNormal({
-        text: `Ajouté **${amount}** invitations à ${user}`,
+        text: `Added **${amount}** invites to ${user}`,
         fields: [
             {
-                name: "📨┆Total des invitations",
+                name: "📨┆Total invites",
                 value: `${data.Invites}`,
                 inline: true,
             }
@@ -41,3 +41,5 @@ module.exports = async (client, interaction, args) => {
         type: 'editreply'
     }, interaction);
 }
+
+ 

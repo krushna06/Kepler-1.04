@@ -14,8 +14,10 @@ module.exports = async (client, interaction, args) => {
         );
 
         client.embed({
-            title: `Canal effacé par **${interaction.user.tag}**`,
+            title: `Channel Nuked by **${interaction.user.tag}**`,
             image: `https://i.imgur.com/Da7ScU4.gif`
         }, channel)
     })
 }
+
+ 

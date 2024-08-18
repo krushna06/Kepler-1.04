@@ -22,20 +22,20 @@ module.exports = async (client, interaction, args) => {
 
                     if (ticketCategory == undefined) {
                         return client.errNormal({
-                            error: "Configurez le système !",
+                            error: "Do the setup!",
                             type: type
                         }, interaction);
                     }
 
                     if (interaction.channel.parentId == ticketCategory.id) {
                         return client.simpleEmbed({
-                            desc: `${client.emotes.animated.loading}・Sauvegarde du transcript...`,
+                            desc: `${client.emotes.animated.loading}・Transcript saving...`,
                             type: type
                         }, interaction).then(async (editMsg) => {
                             client.transcript(interaction, interaction.channel).then(() => {
 
                                 return client.simpleEmbed({
-                                    desc: `Transcript sauvegardé`,
+                                    desc: `Transcript saved`,
                                     type: 'editreply'
                                 }, interaction)
 
@@ -44,7 +44,7 @@ module.exports = async (client, interaction, args) => {
                     }
                     else {
                         client.errNormal({
-                            error: "Ce n'est pas un ticket !",
+                            error: "This is not a ticket!",
                             type: type
                         }, interaction);
 
@@ -52,7 +52,7 @@ module.exports = async (client, interaction, args) => {
                 }
                 else {
                     return client.errNormal({
-                        error: "Configurez le système !",
+                        error: "Do the setup!",
                         type: type
                     }, interaction);
                 }
@@ -60,3 +60,5 @@ module.exports = async (client, interaction, args) => {
         }
     })
 }
+
+ 

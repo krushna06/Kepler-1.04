@@ -5,8 +5,8 @@ const ticketChannels = require("../../database/models/ticketChannels");
 const ticketMessageConfig = require("../../database/models/ticketMessage");
 
 module.exports = async (client, interaction, args) => {
-    let reason = "Non spécifié";
-    if (interaction.options) reason = interaction.options.getString('reason') || "Non spécifié";
+    let reason = "Not given";
+    if (interaction.options) reason = interaction.options.getString('reason') || "Not given";
 
     let type = 'reply';
     if (interaction.isCommand()) type = 'editreply';
@@ -15,12 +15,12 @@ module.exports = async (client, interaction, args) => {
         if (data) {
             if (interaction.isCommand()) {
                 return client.errNormal({
-                    error: "Limite de tickets atteinte. 1/1",
+                    error: "Ticket limit reached. 1/1",
                     type: 'ephemeraledit'
                 }, interaction);
             }
             else return client.errNormal({
-                error: "Limite de tickets atteinte. 1/1",
+                error: "Ticket limit reached. 1/1",
                 type: 'ephemeral'
             }, interaction);
         }
@@ -33,7 +33,7 @@ module.exports = async (client, interaction, args) => {
                     let role = interaction.guild.roles.cache.find(r => r.id === ticketRole.id);
 
                     try {
-                        var openTicket = "Merci d'avoir créé un ticket ! \nLe support sera avec vous sous peu \n\n🔒 - Fermer le ticket \n✋ - Réclamer le ticket \n📝 - Sauvegarder la transcription \n🔔 - Envoyer une notification";
+                        var openTicket = "Thanks for creating a ticket! \nSupport will be with you shortly \n\n🔒 - Close ticket \n✋ - Claim ticket \n📝 - Save transcript \n🔔 - Send a notification";
                         let ticketMessageData = await ticketMessageConfig.findOne({ Guild: interaction.guild.id });
                         if (ticketMessageData) {
                             openTicket = ticketMessageData.openTicket;
@@ -63,8 +63,8 @@ module.exports = async (client, interaction, args) => {
                             );
 
                         client.embed({
-                            title: `${client.emotes.animated.loading}・Progression`,
-                            desc: `Votre ticket est en cours de création...`,
+                            title: `${client.emotes.animated.loading}・Progress`,
+                            desc: `Your ticket is being created...`,
                             type: 'ephemeral'
                         }, interaction).then((msg) => {
 
@@ -79,7 +79,7 @@ module.exports = async (client, interaction, args) => {
 
                             if (ticketCategory == undefined) {
                                 return client.errNormal({
-                                    error: "Configurez le système !",
+                                    error: "Do the setup!",
                                     type: type
                                 }, interaction);
                             }
@@ -93,9 +93,9 @@ module.exports = async (client, interaction, args) => {
                                     Discord.PermissionsBitField.Flags.ViewChannel,
                                     Discord.PermissionsBitField.Flags.AttachFiles,
                                     Discord.PermissionsBitField.Flags.ReadMessageHistory,
-                                ];
+                                ]
 
-                                var ticketid = String(TicketData.TicketCount).padStart(4, 0);
+                                var ticketid = String(TicketData.TicketCount).padStart(4, 0);;
 
                                 interaction.guild.channels.create({
                                     name: `ticket-${ticketid}`,
@@ -116,27 +116,27 @@ module.exports = async (client, interaction, args) => {
                                     parent: category.id
                                 }).then(async channel => {
                                     client.embed({
-                                        title: `⚙️・Système`,
-                                        desc: `Le ticket a été créé`,
+                                        title: `⚙️・System`,
+                                        desc: `Ticket has been created`,
                                         fields: [
                                             {
-                                                name: "👤┆Créateur",
+                                                name: "👤┆Creator",
                                                 value: `${interaction.user}`,
                                                 inline: true
                                             },
                                             {
-                                                name: "📂┆Canal",
+                                                name: "📂┆Channel",
                                                 value: `${channel}`,
                                                 inline: true
                                             },
                                             {
-                                                name: "⏰┆Créé à",
+                                                name: "⏰┆Created at",
                                                 value: `<t:${(Date.now() / 1000).toFixed(0)}:f>`,
                                                 inline: true
                                             }
                                         ],
                                         type: type
-                                    }, interaction);
+                                    }, interaction)
 
                                     new ticketChannels({
                                         Guild: interaction.guild.id,
@@ -148,59 +148,59 @@ module.exports = async (client, interaction, args) => {
 
                                     if (logsChannel) {
                                         client.embed({
-                                            title: `📝・Ticket ouvert`,
-                                            desc: `Un nouveau ticket a été créé`,
+                                            title: `📝・Open ticket`,
+                                            desc: `A new ticket has been created`,
                                             fields: [
                                                 {
-                                                    name: "👤┆Créateur",
+                                                    name: "👤┆Creator",
                                                     value: `${interaction.user.tag} (${interaction.user.id})`,
                                                     inline: false
                                                 },
                                                 {
-                                                    name: "📂┆Canal",
-                                                    value: `${channel.name} se trouve à ${channel}`,
+                                                    name: "📂┆Channel",
+                                                    value: `${channel.name} is found at ${channel}`,
                                                     inline: false
                                                 },
                                                 {
-                                                    name: "⏰┆Créé à",
+                                                    name: "⏰┆Created at",
                                                     value: `<t:${(Date.now() / 1000).toFixed(0)}:F>`,
                                                     inline: false
                                                 }
                                             ],
-                                        }, logsChannel);
+                                        }, logsChannel)
                                     }
 
                                     await client.embed({
                                         desc: openTicket,
                                         fields: [
                                             {
-                                                name: "👤┆Créateur",
+                                                name: "👤┆Creator",
                                                 value: `${interaction.user}`,
                                                 inline: true
                                             },
                                             {
-                                                name: "📄┆Sujet",
+                                                name: "📄┆Subject",
                                                 value: `${reason}`,
                                                 inline: true
                                             },
                                             {
-                                                name: "⏰┆Créé à",
+                                                name: "⏰┆Created at",
                                                 value: `<t:${(Date.now() / 1000).toFixed(0)}:F>`,
                                                 inline: true
                                             }
                                         ],
                                         components: [row],
                                         content: `${interaction.user}, ${role}`
-                                    }, channel);
-                                });
+                                    }, channel)
+                                })
                             }
 
-                        });
+                        })
 
                     }
                     catch (err) {
                         client.errNormal({
-                            error: "Configurez le système !",
+                            error: "Do the setup!",
                             type: type
                         }, interaction);
                         console.log(err);
@@ -208,11 +208,13 @@ module.exports = async (client, interaction, args) => {
                 }
                 else {
                     return client.errNormal({
-                        error: "Configurez le système !",
+                        error: "Do the setup!",
                         type: type
                     }, interaction);
                 }
-            });
+            })
         }
-    });
+    })
 }
+
+ 

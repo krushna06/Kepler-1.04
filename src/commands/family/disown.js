@@ -9,12 +9,12 @@ module.exports = async (client, interaction, args) => {
     const guild = { Guild: interaction.guild.id };
 
     if (author.id == target.id) return client.errNormal({
-        error: "Vous ne pouvez pas vous désownage vous-même",
+        error: "You cannot disown yourself",
         type: 'editreply'
     }, interaction);
 
     if (target.bot) return client.errNormal({
-        error: "Vous ne pouvez pas désownage un bot",
+        error: "You cannot disown a bot",
         type: 'editreply'
     }, interaction);
 
@@ -22,7 +22,7 @@ module.exports = async (client, interaction, args) => {
         if (data) {
             Schema.findOne({ Guild: interaction.guild.id, User: data.Parent }, async (err, data2) => {
                 if (data2) {
-                    client.embed({ title: `👪・Désowné`, desc: `${author} a désowné <@!${data.Parent}>`, type: 'editreply' }, interaction);
+                    client.embed({ title: `👪・Disowned`, desc: `${author} has disowned <@!${data.Parent}>`, type: 'editreply' }, interaction);
 
                     data.Parent = null;
                     data.save();
@@ -48,16 +48,18 @@ module.exports = async (client, interaction, args) => {
                             }
                         })
 
-                        client.embed({ title: `👪・Désowné`, desc: `${author} a désowné <@!${target.id}>`, type: 'editreply' }, interaction);
+                        client.embed({ title: `👪・Disowned`, desc: `${author} has disowned <@!${target.id}>`, type: 'editreply' }, interaction);
                     }
                     else {
-                        client.errNormal({ error: "Vous n'avez actuellement aucun enfant/parent", type: 'editreply' }, interaction);
+                        client.errNormal({ error: "You have no children/parents at the moment", type: 'editreply' }, interaction);
                     }
                 }
                 else {
-                    client.errNormal({ error: "Vous n'avez actuellement aucun enfant/parent", type: 'editreply' }, interaction);
+                    client.errNormal({ error: "You have no children/parents at the moment", type: 'editreply' }, interaction);
                 }
             })
         }
     })
 }
+
+ 

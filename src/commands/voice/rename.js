@@ -4,7 +4,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkBotPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageChannels],
         perms: [Discord.PermissionsBitField.Flags.ManageChannels]
-    }, interaction);
+    }, interaction)
 
     if (perms == false) return;
 
@@ -12,13 +12,13 @@ module.exports = async (client, interaction, args) => {
 
     const channel = interaction.member.voice.channel;
     if (!channel) return client.errNormal({
-        error: `Vous n'êtes pas dans un canal vocal !`,
+        error: `You're not in a voice channel!`,
         type: 'editreply'
     }, interaction);
     var checkVoice = await client.checkVoice(interaction.guild, channel);
     if (!checkVoice) {
         return client.errNormal({
-            error: `Vous ne pouvez pas modifier ce canal !`,
+            error: `You cannot edit this channel!`,
             type: 'editreply'
         }, interaction);
     } else {
@@ -26,10 +26,10 @@ module.exports = async (client, interaction, args) => {
         channel.edit({ name: name });
 
         client.succNormal({
-            text: `Le canal a été renommé en \`${name}\``,
+            text: `The channel was renamed to \`${name}\``,
             fields: [
                 {
-                    name: `📘┆Canal`,
+                    name: `📘┆Channel`,
                     value: `${channel} (${channel.name})`
                 }
             ],

@@ -10,7 +10,7 @@ module.exports = async (client, interaction, args) => {
 
     if (perms == false) {
         client.errNormal({
-            error: "Vous n'avez pas les autorisations requises pour utiliser cette commande !",
+            error: "You don't have the required permissions to use this command!",
             type: 'editreply'
         }, interaction);
         return;
@@ -18,19 +18,20 @@ module.exports = async (client, interaction, args) => {
 
     const member = interaction.options.getUser('user');
 
+
     Schema.findOne({ Guild: interaction.guild.id, User: member.id }, async (err, data) => {
         if (data) {
             var fields = [];
             data.Warnings.forEach(element => {
                 fields.push({
-                    name: "Avertissement **" + element.Case + "**",
-                    value: "Raison : " + element.Reason + "\nModérateur <@!" + element.Moderator + ">",
+                    name: "Warning **" + element.Case + "**",
+                    value: "Reason: " + element.Reason + "\nModerator <@!" + element.Moderator + ">",
                     inline: true
                 })
             });
             client.embed({
-                title: `${client.emotes.normal.error}・Avertissements`,
-                desc: `Les avertissements de **${member.tag}**`,
+                title: `${client.emotes.normal.error}・Warnings`,
+                desc: `The warnings of **${member.tag}**`,
                 fields: [
                     {
                         name: "Total",
@@ -43,10 +44,11 @@ module.exports = async (client, interaction, args) => {
         }
         else {
             client.embed({
-                title: `${client.emotes.normal.error}・Avertissements`,
-                desc: `L'utilisateur ${member.user.tag} n'a aucun avertissement !`,
+                title: `${client.emotes.normal.error}・Warnings`,
+                desc: `User ${member.user.tag} has no warnings!`,
                 type: 'editreply'
             }, interaction)
         }
     })
 }
+

@@ -13,16 +13,16 @@ module.exports = async (client, interaction, args) => {
     const reason = interaction.options.getString('reason');
 
     if (user.isCommunicationDisabled()) return client.errNormal({
-        error: `${user} est déjà en timeout !`,
+        error: `${user} has already timed out!`,
         type: 'editreply'
     }, interaction);
 
     user.timeout(time * 60 * 1000, reason).then(m => {
         client.succNormal({
-            text: `${user} a été mis en timeout avec succès **${time} minutes**`,
+            text: `${user} successfully timed out **${time} minutes**`,
             fields: [
                 {
-                    name: `💬┆Raison`,
+                    name: `💬┆Reason`,
                     value: `${reason}`
                 }
             ],
@@ -30,8 +30,10 @@ module.exports = async (client, interaction, args) => {
         }, interaction)
     }).catch(e => {
         client.errNormal({
-            error: `Je ne peux pas mettre ${user.tag} en timeout`,
+            error: `I can't timeout ${user.tag}`,
             type: 'editreply'
         }, interaction);
     })
 }
+
+ 

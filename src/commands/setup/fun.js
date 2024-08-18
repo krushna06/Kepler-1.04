@@ -11,12 +11,14 @@ module.exports = async (client, interaction, args) => {
     const channel = interaction.options.getChannel('channel');
     
     const choices = {
-        birthdays: Birthdays,
-        chatbot: Chatbot,
-        reviews: Review,
-        suggestions: Suggestion,
-        starboard: StarBoard
+        birthdays : Birthdays,
+        chatbot : Chatbot,
+        reviews : Review,
+        suggestions : Suggestion,
+        starboard : StarBoard
     };
 
     client.createChannelSetup(choices[choice], channel, interaction);
 }
+
+ 

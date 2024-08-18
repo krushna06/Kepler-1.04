@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction);
+    }, interaction)
 
     if (perms == false) return;
 
@@ -21,16 +21,16 @@ module.exports = async (client, interaction, args) => {
     }
     else {
         return client.errNormal({
-            error: `Aucune donnée d'invitation trouvée pour ${user}`,
+            error: `No invite data found for ${user}`,
             type: 'editreply'
         }, interaction);
     }
 
     client.succNormal({
-        text: `Retiré **${amount}** invitations de ${user}`,
+        text: `Removed **${amount}** invites from ${user}`,
         fields: [
             {
-                name: "📨┆Total des invitations",
+                name: "📨┆Total invites",
                 value: `${data.Invites}`,
                 inline: true,
             }
@@ -38,3 +38,5 @@ module.exports = async (client, interaction, args) => {
         type: 'editreply'
     }, interaction);
 }
+
+ 

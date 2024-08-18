@@ -16,22 +16,24 @@ module.exports = async (client, interaction, args) => {
                 data.save();
 
                 client.succNormal({ 
-                    text: `Mot sauté avec succès !`,
+                    text: `Word skipped successfully!`,
                     type: 'ephemeral'
                 }, interaction);
 
                 return client.embed({ 
-                    title: `💬・Devine le mot`, 
-                    desc: `Remets les lettres dans le bon ordre ! \n\n🔀 ${shuffled.toLowerCase()}`,
+                    title: `💬・Guess the word`, 
+                    desc: `Put the letters in the right position! \n\n🔀 ${shuffled.toLowerCase()}`,
                 }, interaction.channel)
             }
             catch { }
         }
         else {
             client.errNormal({
-                error: "Vous n'êtes pas dans le bon canal !",
+                error: "You are not in the right channel!",
                 type: 'editreply'
             }, interaction)
         }
     })
 }
+
+ 

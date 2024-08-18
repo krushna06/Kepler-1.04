@@ -2,29 +2,31 @@ const Discord = require('discord.js');
 
 module.exports = async (client, interaction, args) => {
     client.embed({
-        title: `📘・Informations sur le propriétaire`,
+        title: `📘・Owner information`,
         desc: `____________________________`,
         thumbnail: client.user.avatarURL({ dynamic: true, size: 1024 }),
         fields: [{
-            name: "👑┆Nom du propriétaire",
+            name: "👑┆Owner name",
             value: `n0step_`,
             inline: true,
         },
         {
-            name: "🏷┆Tag Discord",
+            name: "🏷┆Discord tag",
             value: `n0step_`,
             inline: true,
         },
         {
-            name: "🏢┆Organisation",
+            name: "🏢┆Organization",
             value: `CoreWare`,
             inline: true,
         },
         {
-            name: "🌐┆Site web",
+            name: "🌐┆Website",
             value: `[https://n0step.xyz](https://n0step.xyz)`,
             inline: true,
         }],
         type: 'editreply'
     }, interaction)
 }
+
+ 

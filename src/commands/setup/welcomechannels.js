@@ -8,9 +8,11 @@ module.exports = async (client, interaction, args) => {
     const channel = interaction.options.getChannel('channel');
 
     const choices = {
-        welcomechannel: welcomeChannel,
-        leavechannel: leaveChannel
+        welcomechannel : welcomeChannel,
+        leavechannel : leaveChannel
     };
 
     client.createChannelSetup(choices[choice], channel, interaction);
 }
+
+ 

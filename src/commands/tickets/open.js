@@ -17,7 +17,7 @@ module.exports = async (client, interaction, args) => {
     ticketChannels.findOne({ Guild: interaction.guild.id, channelID: interaction.channel.id }, async (err, ticketData) => {
         if (ticketData) {
             if (ticketData.resolved == false) return client.errNormal({
-                error: "Le ticket est déjà ouvert !",
+                error: "Ticket is already open!",
                 type: 'ephemeraledit'
             }, interaction);
 
@@ -27,7 +27,7 @@ module.exports = async (client, interaction, args) => {
 
                     if (ticketCategory == undefined) {
                         return client.errNormal({
-                            error: "Configurez le système !",
+                            error: "Do the setup!",
                             type: type
                         }, interaction);
                     }
@@ -50,13 +50,13 @@ module.exports = async (client, interaction, args) => {
                         ticketData.save();
 
                         return client.simpleEmbed({
-                            desc: `Ticket ouvert par <@!${interaction.user.id}>`,
+                            desc: `Ticket opened by <@!${interaction.user.id}>`,
                             type: type
                         }, interaction)
                     }
                     else {
                         client.errNormal({
-                            error: "Ce n'est pas un ticket !",
+                            error: "This is not a ticket!",
                             type: type
                         }, interaction);
 
@@ -64,7 +64,7 @@ module.exports = async (client, interaction, args) => {
                 }
                 else {
                     return client.errNormal({
-                        error: "Configurez le système !",
+                        error: "Do the setup!",
                         type: type
                     }, interaction);
                 }
@@ -72,3 +72,5 @@ module.exports = async (client, interaction, args) => {
         }
     })
 }
+
+ 

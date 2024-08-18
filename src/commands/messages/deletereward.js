@@ -8,7 +8,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction);
+    }, interaction)
 
     if (perms == false) return;
     
@@ -16,7 +16,7 @@ module.exports = async (client, interaction, args) => {
         if (data) {
             Schema.findOneAndDelete({ Guild: interaction.guild.id, Messages: messages }).then(() => {
                 client.succNormal({
-                    text: `Récompense de messages supprimée`,
+                    text: `Message reward removed`,
                     fields: [
                         {
                             name: "💬┆Messages",
@@ -26,13 +26,15 @@ module.exports = async (client, interaction, args) => {
                     ],
                     type: 'editreply'
                 }, interaction);
-            });
+            })
         }
         else {
             return client.errNormal({
-                error: "Aucune récompense trouvée pour ce nombre de messages !",
+                error: "No message reward found at this message amount!",
                 type: 'editreply'
             }, interaction);
         }
-    });
+    })
 }
+
+ 

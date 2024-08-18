@@ -5,7 +5,7 @@ module.exports = async (client, interaction, args) => {
     const url = interaction.options.getString('url');
     const text = interaction.options.getString('text');
 
-    if (text.length > 50) return client.errNormal({ error: "Le texte de votre bouton ne peut pas dépasser 50 caractères", type: 'editreply' }, interaction);
+    if (text.length > 50) return client.errNormal({ error: "Your button text cannot be longer than 50 characters", type: 'editreply' }, interaction);
 
     let button = new Discord.ButtonBuilder()
         .setLabel(`${text}`)
@@ -17,10 +17,11 @@ module.exports = async (client, interaction, args) => {
 
     client.embed({
         title: `🔗・${text}`,
-        desc: `Cliquez sur le bouton pour ouvrir le lien !`,
+        desc: `Click the button to open the link!`,
         components: [row],
         type: 'editreply'
     }, interaction)
 
 }
 
+ 

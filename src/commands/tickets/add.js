@@ -8,7 +8,7 @@ module.exports = async (client, interaction, args) => {
     const perms = await client.checkUserPerms({
         flags: [Discord.PermissionsBitField.Flags.ManageMessages],
         perms: [Discord.PermissionsBitField.Flags.ManageMessages]
-    }, interaction);
+    }, interaction)
 
     if (perms == false) return;
 
@@ -16,9 +16,9 @@ module.exports = async (client, interaction, args) => {
         const ticketCategory = interaction.guild.channels.cache.get(data.Category);
         if (ticketCategory == undefined) {
             return client.errNormal({
-                error: "Configurez le système de tickets !",
+                error: "Do the ticket setup!",
                 type: 'editreply'
-            }, interaction);
+            }, interaction)
         }
 
         if (interaction.channel.parentId == ticketCategory.id) {
@@ -26,16 +26,17 @@ module.exports = async (client, interaction, args) => {
             interaction.channel.permissionOverwrites.edit(user.id, { ViewChannel: true, SendMessages: true });
 
             return client.simpleEmbed({
-                desc: `Ajouté ${user}`,
+                desc: `Added ${user}`,
                 type: 'editreply'
-            }, interaction);
+            }, interaction)
         }
         else {
             client.errNormal({
-                error: "Ce n'est pas un ticket !",
+                error: "This is not a ticket!",
                 type: 'editreply'
-            }, interaction);
+            }, interaction)
         }
     }
 }
 
+ 

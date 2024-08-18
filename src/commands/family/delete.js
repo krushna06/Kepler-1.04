@@ -18,8 +18,8 @@ module.exports = async (client, interaction, args) => {
         );
 
     client.embed({
-        title: `${client.emotes.normal.error}・Réinitialisation de la famille`,
-        desc: `Êtes-vous sûr de vouloir réinitialiser votre famille ?`,
+        title: `${client.emotes.normal.error}・Reset family`,
+        desc: `Are you sure you want to reset your family?`,
         components: [row],
         type: 'editreply'
     }, interaction);
@@ -45,7 +45,7 @@ module.exports = async (client, interaction, args) => {
                     partner.save();
                 }
 
-                client.succNormal({ text: `Votre famille a été supprimée !`, type: 'editreply' }, interaction);
+                client.succNormal({ text: `Your family has been deleted!`, type: 'editreply' }, interaction);
             }
 
             if (i.customId == "family_stop") {
@@ -54,6 +54,8 @@ module.exports = async (client, interaction, args) => {
         })
         .catch((err) => {
             console.log(err)
-            client.errNormal({ error: "Le temps est écoulé ! Chargement de la sauvegarde annulé !", type: 'editreply' }, interaction);
+            client.errNormal({ error: "Time's up! Cancelled backup loading!", type: 'editreply' }, interaction);
         });
 }
+
+ 

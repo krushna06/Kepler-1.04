@@ -13,10 +13,10 @@ module.exports = async (client, interaction, args) => {
         }, interaction)
 
         client.succNormal({
-            text: `Votre URL raccourcie a été créée !`,
+            text: `Your shortened url has been created!`,
             fields: [
                 {
-                    name: `🔗┇Lien`,
+                    name: `🔗┇Link`,
                     value: `${res}`,
                     inline: true,
                 }
@@ -26,3 +26,4 @@ module.exports = async (client, interaction, args) => {
     });
 }
 
+ 
